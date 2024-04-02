@@ -8,7 +8,7 @@ const Search = (props) => {
     const [arrivalPort, setArrivalPort] = useState('');
     const [departureDate, setDepartureDate] = useState('');
     const [returnDate, setReturnDate] = useState('');
-    const [noOfAdult, setNoOfAdult] = useState(0);
+    const [noOfAdult, setNoOfAdult] = useState(1);
     const [noOfChildren, setNoOfChildren] = useState(0);
     const [noOfInfant, setNoOfInfant] = useState(0);
     const [tripType, setTripType] = useState("ONE_WAY");
