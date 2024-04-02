@@ -12,12 +12,13 @@ import FlightInformationPageBody from "../FlightInformationPage/FlightInformatio
 import "../FlightInformationPage/FlightInformationPageBody/FlightInformationPageBody.css";
 import {Link} from "react-router-dom";
 import  PlaneImage from "../../assets/planeInMotion.svg";
-import flightimage from "../../assets/Flight-Icon.svg";
-import flightimg from "../../assets/Flight-Icon.svg";
-import smalldepart from "../../assets/smalldep.svg";
-import bigdepart from "../../assets/bigdep.svg";
-import smallreturne from "../../assets/smallreturnplan.svg";
-import returnplane from "../../assets/returningplane.svg";
+import flightImage from "../../assets/Flight-Icon.svg";
+import flightImg from "../../assets/Flight-Icon.svg";
+import smallDepart from "../../assets/smalldep.svg";
+import bigDepart from "../../assets/bigdep.svg";
+import smallReturn from "../../assets/smallreturnplan.svg";
+import returnPlane from "../../assets/returningplane.svg";
+
 
 
 const SliderWrapper = styled.div`
@@ -580,7 +581,7 @@ function FlightSelectionOne(props) {
                                     {flight?.departurePortCity}
                                   </div>
                                 </div>
-                                <img src= {bigdepart} />
+                                <img src= {bigDepart} />
                                 <div className="arrivaltime">
                                   <div className="departtime">
                                     {convertTo12HourFormat(flight?.arrivalTime)}
@@ -593,12 +594,12 @@ function FlightSelectionOne(props) {
 
                               <div className="summary">
                                 <div className="departing">
-                                  <img src= {smalldepart} />
+                                  <img src= {smallDepart} />
                                   <div className="dep">Departure</div>
                                 </div>
 
                                 <div className="depflyinfo">
-                                  <img src= {flightimg} />
+                                  <img src= {flightImg} />
                                   <button
                                       onClick={showModal}
                                       className="flyinfo"
@@ -706,7 +707,7 @@ function FlightSelectionOne(props) {
                                   </div>
                                 </div>
 
-                                <img src={bigdepart} />
+                                <img src={bigDepart} />
 
                                 <div className="arrivaltime">
                                   <div className="departtime">
@@ -720,12 +721,12 @@ function FlightSelectionOne(props) {
 
                               <div className="summary">
                                 <div className="departing">
-                                  <img src={smalldepart} />
+                                  <img src={smallDepart} />
                                   <div className="dep">Departure</div>
                                 </div>
 
                                 <div className="depflyinfo">
-                                  <img src= {flightimage}/>
+                                  <img src= {flightImage}/>
                                   <button
                                       onClick={showModal}
                                       className="flyinfo"
@@ -885,7 +886,7 @@ function FlightSelectionOne(props) {
                                   </div>
                                 </div>
 
-                                <img src= {returnplane} />
+                                <img src= {returnPlane} />
 
                                 <div className="arrivaltime">
                                   <div className="arrivetime">
@@ -899,12 +900,12 @@ function FlightSelectionOne(props) {
 
                               <div className="summary">
                                 <div className="departing">
-                                  <img src= {smallreturne}/>
+                                  <img src= {smallReturn}/>
                                   <div className="dep">Arrival</div>
                                 </div>
 
                                 <div className="depflyinfo">
-                                  <img src= {flightimage} />
+                                  <img src= {flightImage} />
                                   <button
                                       onClick={showModal}
 
@@ -1018,7 +1019,7 @@ function FlightSelectionOne(props) {
                                   </div>
                                 </div>
 
-                                <img src={returnplane} />
+                                <img src={returnPlane} />
 
                                 <div className="arrivaltime">
                                   <div className="arrivetime">
@@ -1032,12 +1033,12 @@ function FlightSelectionOne(props) {
 
                               <div className="summary">
                                 <div className="departing">
-                                  <img src={smallreturne} />
+                                  <img src={smallReturn} />
                                   <div className="dep">Arrival</div>
                                 </div>
 
                                 <div className="depflyinfo">
-                                  <img src={flightimg} />
+                                  <img src={flightImg} />
                                   <button
                                       onClick={showModal}
 
