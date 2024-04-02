@@ -6,6 +6,7 @@ import VerifyPage from './Pages/VerifyPage';
 import ResetPasswordPage from './Pages/ResetPasswordPage';
 import ForgotPasswordPage from './Pages/ForgotPasswordPage';
 import LandingPage from './Pages/LandingPage';
+import FlightSelectionOnePage from "./Pages/FlightSelectionOnePage.jsx";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route exact path="/forgot-password" element={<ForgotPasswordPage/>} />
           <Route exact path="/api/v1/auth/reset-password/:token" element={<ResetPasswordPage />} />
           <Route exact path="/api/v1/auth/verifyRegistration" element={<VerifyPage/>}/>
+            <Route exact path="/flight-select" element={<FlightSelectionOnePage/>}/>
+
         </Routes>
       </Router>
 

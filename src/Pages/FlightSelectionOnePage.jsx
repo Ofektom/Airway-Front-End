@@ -1,8 +1,11 @@
 import React from 'react'
+import FlightSelectionOne from "../Components/FlightSelectionOnePage/FlightSelectionOne.jsx";
 
 function FlightSelectionOnePage() {
   return (
-    <div>FlightSelectionOnePage</div>
+    <div>
+      <FlightSelectionOne/>
+    </div>
   )
 }
 
