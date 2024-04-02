@@ -1,0 +1,551 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
+
+
+.parent{
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+    background-color:  #EAECF0;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+}
+
+.inner{
+    padding: 4.8em;
+    background-color: #EAECF0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.headercontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    padding-left: 4.5em;
+    padding-right: 4.5em;
+
+}
+
+.priceairway{
+    background-color: #001F3F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.infoflight{
+    background-color: white;
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    gap: 3px;
+    width: 30%;
+    margin-left: 20px;
+}
+
+
+.statusPassengerPaymentConfirmation{
+    background-color: white;
+    display: flex;
+    gap:15px;
+    flex-direction: row;
+    font-family: Lato;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+.airwayherobody{
+    background-color:  #001F3F;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-between;
+    padding-right: 5em;
+    height: 150px;
+}
+
+.routesearch{
+    background-color:  #001F3F;
+    width: 48%;
+    padding: 1.75em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.routesearch button{
+    background-color: #001F3F;
+    border: 2px solid white;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    width: 20%;
+    height: 63%;
+    gap: 5px;
+    padding: 0.752em;
+    margin-left: 20px;
+    align-items: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.15000000596046448px;
+    /*text-align: left;*/
+}
+
+.routesearch button img{
+    width: 20px;
+}
+
+.routesearch{
+    background-color: #001F3F;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.routeDatePassTrip{
+    color: white;
+    width: 100%;
+    margin-left: 20px;
+}
+
+.dep-arrive-main{
+    background-color: white;
+    margin-top: 40px;
+}
+
+.departurebody{
+    background-color: white;
+    padding: 70px;
+    gap: 30px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.depart-div{
+    background-color: white;
+    width: 25%;
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+    padding-left: 10px;
+
+}
+
+.depart-div span{
+    margin-top: 5px;
+    background-color: white;
+    width: 100%;
+    font-size: 27.65px;
+    font-weight: 700;
+    line-height: 28px;
+    text-align: left;
+}
+
+.departureflight{
+    background-color: white;
+    padding: 0.2em;
+
+
+}
+
+.arrivalflight{
+    background-color: white;
+    padding: 0.2em;
+    margin-top: 30px;
+}
+
+.nodepflight{
+    background-color: white;
+}
+
+
+.depflyrouteinfo{
+    background-color: white;
+    color: white;
+    width: 30%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.depflightinfo{
+    background-color: #001F3F;
+    height: 39%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+
+
+.flight-classes{
+    background-color:  #001F3F;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 25%;
+}
+
+
+.class{
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33.3%;
+    padding: 10px;
+}
+
+.depinnerbody{
+    border: 1px solid #000000;
+    display: flex;
+    /*background-color: red;*/
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+}
+
+.arrivedepinnerbody{
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    padding-bottom: 20px;
+    margin-bottom: 16px;
+}
+
+
+.depandarrivetime{
+    background-color: white;
+    color: black;
+    padding-left: 1.5em ;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: left;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+.depandarrivetime img{
+    background-color: white;
+    width: 2.6em;
+}
+
+.departtime{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: left;
+
+}
+
+.arrivetime{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: left;
+}
+
+
+.depflyinfo{
+    display: flex;
+    width: 100%;
+    background-color: white;
+}
+
+.deproute{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: left;
+
+}
+.arriveroute{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: left;
+}
+.depflyinfo button{
+    color: #2D9CDB;
+    border: transparent;
+    background-color: white;
+    width: 10.3em;
+}
+
+.depandimg{
+    display: flex;
+    background-color: white;
+    width: 15%;
+}
+
+.depandimg img{
+    width: 20px;
+}
+
+.dep{
+    color: black;
+}
+
+.summary{
+    margin-top: 20px;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0em;
+    margin-left: 20px;
+}
+
+.flyclassesandprices {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 10px;
+}
+
+
+.flightprices{
+    background-color: white;
+    display: flex;
+    gap: 12px;
+    border-radius: 10px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.flightprices button {
+    width: 7em;
+    height: 2.1em;
+    padding: 0.5em;
+    background-color:white;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24.6px;
+
+}
+
+.economyclass {
+    width: 32.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    gap: 10px;
+
+}
+
+
+.premiumclass{
+    width: 32.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px
+    solid #000000;
+    border-radius: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    gap: 10px;
+
+}
+.businessclass{
+    width: 32.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px
+    solid #000000;
+    border-radius: 10px;
+    padding-top: 10px;
+    margin-top: 10px;
+    padding-bottom: 30px;
+    gap: 10px;
+
+}
+
+.arrivalbody{
+
+
+    background-color: white;
+    padding: 70px;
+    gap: 30px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.continue{
+    background-color: #EAECF0;
+    width: 15%;
+}
+
+.continue button{
+    padding: 1em;
+    width: 70%;
+    background-color:  #2D9CDB;
+}
+
+.departing{
+    display: flex;
+    background-color: white;
+    flex-direction: row;
+    gap: 5.5px;
+}
+
+.flightprices button{
+    color:  #2D9CDB;
+    border-color:#2D9CDB;
+    border-radius: 5px;
+}
+
+.blue {
+    /*background-color: #2D9CDB;*/
+    color: white;
+}
+
+.baseFare{
+    /*background-color: white;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21.09px;
+    font-weight: 600;
+    line-height: 24.6px;
+    text-align: left;
+
+}
+
+.naira{
+    /*background-color: white;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21.09px;
+    font-weight: 600;
+    line-height: 24.6px;
+    text-align: left;
+
+}
+
+.day{
+    font-size: 14.06px;
+    font-weight: 600;
+    line-height: 24.6px;
+    text-align: left;
+}
+
+.date{
+    font-size: 14.06px;
+    font-weight: 400;
+    line-height: 24.6px;
+    text-align: left;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24.6px;
+    text-align: left;
+
+}
+
+.deptime{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrivaltime{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxy{
+    border: 1px solid #ccc;
+    height: 8em;
+    margin-bottom: 10px;
+    background-color: #2D9CDB;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.boxy .day {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.boxy .date {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.homeAboutSign{
+    background-color: white;
+    display: flex;
+    gap: 5px;
+
+}
+.homeAbout{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 28px;
+}
+
+.homeAboutSign  button{
+    background-color: #2D9CDB;
+    width: 100px;
+    padding: 0.5em;
+    margin-top: 0.6em;
+    border-radius: 5px;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+/*.aboutAirnow{*/
+/*    background-color: red;*/
+/*    color: black;*/
+/*}*/
