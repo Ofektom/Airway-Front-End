@@ -1,14 +1,18 @@
 import './LandingPageHeader.css';
 import { Link} from 'react-router-dom';
+import airwayLogo from "/src/assets/airways-logo.png";
+import Search from "../LandingPageSearch/LandingPageSearch.jsx";
+import {useState} from "react";
 
-const Navbar = () => {
-  const firstName = JSON.parse(localStorage.getItem('userFirstName'))
+const Navbar = ({ isLoggedOut }) => {
+  const firstName = JSON.parse(localStorage.getItem('userFirstName'));
+
 
   return(
   <div className='header-main-container'>
     <div className="navbarrpage">
       <div className="logoo-container">
-        <img src="../src/assets/airways-logo.png" alt="Airplane Logo" className="logoo-img" />
+        <img src={airwayLogo} alt="Airplane Logo" className="logoo-img" />
         <span className="airwayy-logo">Airway</span>
       </div>
       <ul className="menuu">
@@ -17,7 +21,7 @@ const Navbar = () => {
         <li>
             {firstName ? (
               <div className="uFirstName">
-                {firstName}
+                {isLoggedOut ? "" : firstName}
               </div>
             ) : (
               <Link to={"/signup"}><button className="buttonn">Sign Up</button></Link>
@@ -26,5 +30,8 @@ const Navbar = () => {
       </ul>
   </div>
 </div>
-)}; 
+
+);
+
+};
 export default Navbar;

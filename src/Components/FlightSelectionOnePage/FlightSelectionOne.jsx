@@ -18,8 +18,7 @@ import smallDepart from "../../assets/smalldep.svg";
 import bigDepart from "../../assets/bigdep.svg";
 import smallReturn from "../../assets/smallreturnplan.svg";
 import returnPlane from "../../assets/returningplane.svg";
-
-
+import cancelbutton from "../../assets/modalTripClose.png"
 
 const SliderWrapper = styled.div`
   margin-top: 20px;
@@ -128,7 +127,7 @@ function FlightSelectionOne(props) {
 
   const year = 2024;
   const daysInYear = getAllDaysInYear(year);
-  console.log(daysInYear)
+
 
 
 
@@ -181,13 +180,13 @@ function FlightSelectionOne(props) {
 
   function getDepartingFlightDate(dateString) {
     setDepartingFlightDate(dateString);
-    console.log(dateString);
+
     setSelectedDepartingFlightInfo(0);
   }
 
   function getReturningFlightDate(dateString) {
     setReturningFlightDate(dateString);
-    console.log(dateString);
+
     setSelectedReturningFlightInfo(0);
   }
 
@@ -213,8 +212,7 @@ function FlightSelectionOne(props) {
     ];
     return dayNames[dayOfWeek];
   }
-  console.log(getDayOfWeek("2024-03-02"));
-  console.log(location);
+
 
   const firstName = JSON.parse(localStorage.getItem('userFirstName'));
 
@@ -223,7 +221,13 @@ function FlightSelectionOne(props) {
   };
 
   const routePassengerInformation = (e) => {
-    navigate(`/passenger-information`);
+    navigate(`/passenger-information`,{
+      state:{
+        departingFlights: departingFlights,
+        returningFlights: returningFlights,
+        totalPrice: totalPrice
+      }
+    })
   };
 
   const handleDepartingSelectFlight = (classId) => {
@@ -234,7 +238,7 @@ function FlightSelectionOne(props) {
 
   const handleReturningSelectFlight = (classId) => {
     localStorage.setItem("selectedReturningFlightId", classId);
-    console.log(classId);
+
     setReturningSelectedClasses(classId);
     setReturningFlightPrice(returningFlightPrice);
   };
@@ -253,7 +257,7 @@ function FlightSelectionOne(props) {
 
   const storedSearchDetails = JSON.parse(localStorage.getItem("searchDetails"));
 
-  console.log("ss", storedSearchDetails);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -278,14 +282,9 @@ function FlightSelectionOne(props) {
 
           returningFlights.forEach((flight) => {
             const classes = flight.classes;
-            console.log("classes for flight" + flight?.flightNo);
+
             classes.forEach((classItem) => {
-              console.log(
-                  classItem.className,
-                  classItem.baseFare,
-                  classItem.availableSeat,
-                  classItem.id
-              );
+
             });
           });
         }
@@ -297,7 +296,6 @@ function FlightSelectionOne(props) {
   }, []);
 
   useEffect(() => {
-    console.log("sott", storedSearchDetails);
     if (!storedSearchDetails) return;
     const fetchDepartingFlights = async () => {
       try {
@@ -324,7 +322,7 @@ function FlightSelectionOne(props) {
         const response = await axios.get(
             `http://localhost:8080/api/v1/flights/all-returning-flights?departurePort=${storedSearchDetails?.arrivalPort}&arrivalPort=${storedSearchDetails?.departurePort}&arrivalDate=${storedSearchDetails?.returnDate}`
         );
-        console.log(response);
+
         if (response && response.status === 200) {
           setAllReturning(response.data);
         } else {
@@ -349,32 +347,27 @@ function FlightSelectionOne(props) {
 
 
   function convertTo12HourFormat(departureTime) {
-    console.log("Input departure time:", departureTime);
     const [hours, minutes] = departureTime.split(":");
     const time = new Date(0, 0, 0, hours, minutes);
-    console.log("Date object:", time);
+
 
     const formattedTime = time.toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
       hour12: false,
     });
-    console.log("Formatted time:", formattedTime);
     return formattedTime;
   }
 
   function convertTo12HourFormat(arrivalTime) {
-    console.log("Input departure time:", arrivalTime);
     const [hours, minutes] = arrivalTime.split(":");
     const time = new Date(0, 0, 0, hours, minutes);
-    console.log("Date object:", time);
 
     const formattedTime = time.toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
       hour12: false,
     });
-    console.log("Formatted time:", formattedTime);
     return formattedTime;
   }
 
@@ -403,11 +396,6 @@ function FlightSelectionOne(props) {
   const departureDates = allDeparture.map(flight => flight.departureDate);
   const allDepartureJSON = JSON.stringify(departureDates);
   localStorage.setItem('allDeparture', allDepartureJSON);
-
-
-
-
-
 
 
 
@@ -629,6 +617,7 @@ function FlightSelectionOne(props) {
                                         background: flight?.classes[0]?.id === selectedDepartingClasses ? "blue" : "transparent",
                                         color: flight?.classes[0]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
                                       }}
+
                                       onClick={() => {
                                         handleDepartingSelectFlight(flight?.classes[0]?.id);
                                         setSelectedDepartingFlight(index + 1);
@@ -694,6 +683,7 @@ function FlightSelectionOne(props) {
                         {"Number of Flights: " + filteredDepartingFlights?.length}
                       </div>
                       {departingFlightsInfo?.map((flight, index) => (
+
                           <div className="depinnerbody" key={index}>
                             <div className="depflyrouteinfo">
                               <div className="depflightinfo">Flight Information</div>
@@ -1161,14 +1151,17 @@ function FlightSelectionOne(props) {
                     <div className="cancelbutton" onClick={cancel} >
 
                       <button className="cancelbutton" type="button">
-                        <img src="src/Components/FlightInformationPage/FlightInformationPageBody/Vector.svg" alt="cancelIcon" />
+                        <img src={cancelbutton} alt="cancelIcon" />
                       </button>
                     </div>
                   </div>
-                  <FlightInformationPageBody  departingFlights={departingFlights} returningFlights = {returningFlights}  />
+                  <FlightInformationPageBody  departingFlights={departingFlights} returningFlights = {returningFlights} />
+
                 </div>
               </div>
+
             </>
+
         ) : (
             <>
             </>

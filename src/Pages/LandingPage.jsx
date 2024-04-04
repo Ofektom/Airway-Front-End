@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Navbar from '../Components/LandingPage/LandingPageHeader/LandingPageHeader'
 import Search from '../Components/LandingPage/LandingPageSearch/LandingPageSearch'
 import Card from '../Components/LandingPage/LandingPageCard/LandingPageCard'
@@ -7,10 +7,12 @@ import Footer from '../Components/LandingPage/LandingPageFooter/LandingPageFoote
 import Subscription from '../Components/LandingPage/LandingPageSubscribe/LandingPageSubscribe'
 
 const LandingPage = () => {
+    const [isLoggedOut, setIsLoggedOut] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <Search />
+      <Navbar isLoggedOut={isLoggedOut}/>
+      <Search setIsLoggedOut={setIsLoggedOut}/>
       <Card />
       <Gallery />
       <Subscription />
