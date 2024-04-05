@@ -167,7 +167,6 @@ padding-top: 0.10rem;
 
 .realArrival-trip {
   display: flex;
-  /*justify-content: space-between;*/
   align-items: center;
   padding: 0.5rem;
   gap: 7.5rem;
@@ -240,7 +239,6 @@ padding-top: 0.10rem;
 .grid-item-modalsum-trip {
   display: flex;
   align-items:baseline;
-  /*justify-content: space-between;*/
 row-gap: 2rem;
   padding: 0px;
 }

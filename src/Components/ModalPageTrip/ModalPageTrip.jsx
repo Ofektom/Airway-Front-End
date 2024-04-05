@@ -77,35 +77,28 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
   }, [reference]);
 
   function convertTo12HourFormat(time24) {
-    // Split the time string into hours and minutes
     const [hours, minutes] = time24.split(':');
 
-    // Convert hours and minutes to numbers
     const hoursNum = parseInt(hours, 10);
     const minutesNum = parseInt(minutes, 10);
 
-    // Determine AM or PM
     const period = hoursNum >= 12 ? 'PM' : 'AM';
 
-    // Convert hours to 12-hour format
     const hours12 = hoursNum % 12 || 12;
 
-    // Format minutes to include leading zero if needed
     const formattedMinutes = minutesNum < 10 ? `0${minutesNum}` : minutesNum;
 
-    // Construct the 12-hour time string
     const time12 = `${hours12}:${formattedMinutes} ${period}`;
 
     return time12;
   }
 
-// Example usage
-  const time24 = '14:30'; // Input 24-hour time
+  const time24 = '14:30';
   const time12 = convertTo12HourFormat(time24);
   console.log(time12); // Output: 2:30 PM
 
   if (!tripSummary || !tripSummary.flightDetails) {
-    return <div>Loading...</div>; // or any other fallback UI
+    return <div>Loading...</div>;
   }
 
 
@@ -113,8 +106,6 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
     return num.toString().padStart(2, '0');
   };
 
-// Inside your component
-// Now you can safely access flightDetails
   const formattedDate1 = tripSummary.flightDetails[0]?.departureDate ? new Date(tripSummary.flightDetails[0].departureDate).toLocaleDateString('en-GB', {
     year: 'numeric',
     month: '2-digit',
