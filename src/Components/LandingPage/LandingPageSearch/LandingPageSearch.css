@@ -1,16 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Inter:500|Lato:400,500");
-.backgroundd {
-    background-image: url('src/assets/LandingPage.png');
-    background-size: cover;
-    background-position: center;
-    padding: 100px;
-    height: 782px;
-    width: 1160px;
-    padding-right: 13%;
-    position: absolute;
-    top: 78px;
-    
-  }
   
   .booking-header{
     display: flex;

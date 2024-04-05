@@ -1,0 +1,134 @@
+.overallback-container {
+    background-color: #F5F5F5;
+    min-height: 70vh;
+}
+
+
+
+
+.overallback {
+    background-color: white;
+    padding: 30px;
+    margin: 0px auto 50px;
+    margin: 50px;
+}
+.blueTabInfant{
+    background-color:#001F3F;
+    margin-bottom: 20px;
+    padding-top: 20px ;
+
+}
+
+p{
+    color: white;
+    padding: 20px;
+    margin:0;
+    font-family: "Lato", sans-serif;
+}
+
+.passenger-form-infant {
+    margin: 20px;
+    display:flex;
+    justify-content: center;
+    font-family: "Lato", sans-serif;
+}
+.grid-container-infant {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.grid-item-infant {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-field{
+    width: calc(100% - 20px);
+    height:50px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 5px;
+}
+.input-field.dob-input{
+    width: 300px;
+}
+
+.input-with-icon-infant {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.calendar-icon {
+    position: absolute;
+    left: 250px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    margin-right: 16px;
+}
+
+.dob-input-container{
+    display: flex;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.contact-info-headline-infant {
+    margin:30px;
+    padding: auto;
+    justify-content: left;
+}
+.contact-info-form-infant {
+    margin: 30px;
+    display:flex;
+    justify-content: center;
+}
+
+.primary-contact-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+}
+.primary-contact-checkbox h4 {
+    color: blue;
+}
+
+.primary-contact-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    border: 2px solid#2D9CDB;
+
+}
+.progress-button-container-infant {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.back-button-infant {
+    padding: 10px 70px;
+    border-radius: 5px;
+    border-color:black;
+    cursor: pointer;
+    background-color: white;
+}
+.continue-button-infant {
+    padding: 10px 70px;
+    border-radius: 5px;
+    border-color:black;
+    cursor: pointer;
+    background-color: white;
+}
+
+.back-button-infant:hover,
+.continue-button-infant:hover {
+    background-color: skyblue;
+    color:white;
+}

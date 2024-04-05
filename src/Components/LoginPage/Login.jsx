@@ -9,6 +9,8 @@ import poolSide from "/src/assets/umbrella.png";
 import icon from "/src/assets/SignupSuccessfulIcon.png";
 import airwayLogo from "/src/assets/airways-logo.png";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login() {
@@ -51,7 +53,7 @@ function Login() {
       localStorage.setItem("userRole", JSON.stringify(userRole));
       localStorage.setItem("userFirstName", JSON.stringify(userFirstName))
       console.log(userRole);
-      
+      toast(`Login successful`)
       setShowModal(true);
       setStatus(true);
       setSuccessMessage("Success");
@@ -59,11 +61,11 @@ function Login() {
       if (userRole === "ADMIN") {
         setTimeout(() => {
           navigate("/admin-dashboard-1");
-        }, 1000);
+        }, 3000);
       } else if (userRole === "PASSENGER") {
-            setTimeout(() => {
-              navigate("/");
-            }, 1000);
+        setTimeout(() => {
+          navigate("/");
+            }, 3000);
     }
     } catch (error) {
       // Handle the error here
@@ -156,6 +158,7 @@ function Login() {
                   </footer>
                 </div>
               </form>
+              <ToastContainer/>
             </div>
         </div>
 

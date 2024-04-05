@@ -1,8 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./ForgotPassword.css";
 import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+
 
 const ForgotPassword = () => {
     const [showModal, setShowModal] = useState(false);
@@ -14,6 +16,8 @@ const ForgotPassword = () => {
         email: "",
     });
     const { email } = user;
+    const [loading, setLoading] = useState(false);
+
 
     const onInputChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,6 +25,8 @@ const ForgotPassword = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
+
 
         try {
             await axios.post(
@@ -36,6 +42,7 @@ const ForgotPassword = () => {
             setShowModal(true);
             setStatus(true);
             setSuccessMessage("Password Reset Link Sent!");
+            setLoading(false);
 
             setModalMessage(`Check your email ${email} for the reset link`);
 
@@ -61,6 +68,11 @@ const ForgotPassword = () => {
     };
 
     return (
+        <div>
+            {loading && (
+                <img className="loading-textP" src={airwayAnimationPass} alt="Loading animation"/>
+            )}
+            {loading || (
         <div className="forget-password-container">
             <img src="../src/assets/Rectangle 58.svg" alt="Your Image" className="forget-password-image" />
             <div className="forget-password-content-container">
@@ -121,6 +133,8 @@ const ForgotPassword = () => {
               </div>
           </div>
             </div>
+        </div>
+                )}
         </div>
     );
 };

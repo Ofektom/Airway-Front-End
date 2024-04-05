@@ -1,0 +1,132 @@
+.infoLowerAdult-container {
+    background-color: #F5F5F5;
+    min-height: 150vh;
+
+}
+
+.infoLowerAdult {
+    background-color: white;
+    padding: 30px;
+    margin: 0px auto 50px;
+    margin: 50px;
+}
+
+.blueTabAdult{
+    background-color:#001F3F;
+}
+
+p{
+    color: white;
+    padding: 20px;
+    margin:30px;
+}
+.passenger-form-adult {
+    margin: 20px;
+    display:flex;
+    justify-content: center;
+    font-family: "Lato", sans-serif;
+}
+.grid-container-adult {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.grid-item-adult {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.input-field{
+    width: calc(100% - 20px);
+    height: 30px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 5px;
+}
+.input-field.dob-input{
+    width: 300px;
+}
+
+.input-with-icon-adult {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.calendar-icon {
+    position: absolute;
+    left: 250px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    margin-right: 16px;
+}
+
+.dob-input-container{
+    display: flex;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.contact-info-headline-adult {
+    margin:30px;
+    padding: auto;
+    justify-content: left;
+    font-family: "Lato", sans-serif;
+}
+.contact-info-form-adult {
+    margin: 30px;
+    display:flex;
+    justify-content: center;
+    font-family: "Lato", sans-serif;
+}
+
+.primary-contact-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    color:  #2D9CDB;
+}
+.primary-contact-checkbox h4 {
+    color:  #2D9CDB;
+;
+}
+
+.primary-contact-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    border: 2px solid #2D9CDB;
+
+}
+.progress-button-container-adult {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.back-button-adult {
+    padding: 10px 70px;
+    border-radius: 5px;
+    border-color:black;
+    cursor: pointer;
+    background-color: white;
+}
+.continue-button-adult {
+    padding: 10px 70px;
+    border-radius: 5px;
+    border-color:black;
+    cursor: pointer;
+    background-color: white;
+}
+
+.back-button-adult:hover,
+.continue-button-adult:hover {
+    background-color: #2D9CDB;
+    color:white;
+}

@@ -1,4 +1,4 @@
-import{ useState } from "react";
+import React, { useState } from "react";
 import "./SignUp.css";
 import {Link, useNavigate} from "react-router-dom";
 import { Modal } from "react-bootstrap";
@@ -9,6 +9,8 @@ import icon from "/src/assets/SignupSuccessfulIcon.png"
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
+import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+
 
 
 const SignUp = () => {
@@ -18,6 +20,8 @@ const SignUp = () => {
     const [status, setStatus] = useState(false);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -41,8 +45,9 @@ const SignUp = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+      setLoading(true);
 
-    try {
+      try {
         await axios.post("http://localhost:8080/api/v1/auth/passenger-sign-up", user, {
                 headers: {
                     "Content-Type": "application/json",
@@ -52,12 +57,12 @@ const SignUp = () => {
         setShowModal(true);
         setStatus(true);
         setSuccessMessage("Success");
-
-        setModalMessage("Email Sent Successfully!");
+          setLoading(false);
+          setModalMessage("Email Sent Successfully!");
 
         setTimeout(() => {
             navigate("/login");
-        }, 1000);
+        }, 2000);
     } catch (error) {
         // Handle the error here
         console.error("Error during SignUp:", error);
@@ -93,6 +98,12 @@ const SignUp = () => {
       )
     };
   return (
+      <div>
+          {loading && (
+              <img className="loading-textP" src={airwayAnimationPass} alt="Loading animation"/>
+          )}
+          {loading || (
+
       <div className="signup-container">
           <div>
             <img src={umbrellerIcon} id="signup-main-img" />
@@ -285,6 +296,8 @@ const SignUp = () => {
           </div>
           
       </div>
+              )}
+              </div>
     
   );
 };

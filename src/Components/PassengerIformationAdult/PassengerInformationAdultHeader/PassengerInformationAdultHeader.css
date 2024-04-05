@@ -1,0 +1,144 @@
+.main-airway-body-ad {
+    /*background-color: #f8f9fa;*/
+    font-family: "Lato", sans-serif;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    background-color: white;
+    height: 79px;
+}
+.main-container-header-ad {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin-top: -20px;
+}
+.homeHeader-ad{
+    text-decoration: none;
+}
+
+
+
+
+
+.flightImgAndAirway-ad {
+    display: flex;
+    align-items: center;
+    min-height: 10px;
+    height: auto;
+}
+.flightImgAndAirway-ad img {
+    margin-top: 20px;
+    max-width: 100px;
+    margin-right: 10px;
+    height: auto;
+
+}
+
+.airwayText-ad {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.flightInfo-ad {
+    display: flex;
+    align-items: center;
+}
+
+.flightInfo-ad img {
+    width: 70%;
+    margin-left: 100px;
+    margin-bottom: 0;
+}
+
+.flightSelectionStatus-ad {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+.flightSelectionStatus-ad h6 {
+    margin: -50px 0 0 10px;
+}
+
+.homeAboutSign-ad {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.homeAbout-ad {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.homeAbout-ad a,
+.aboutAir-ad a {
+    margin-right: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.signUp-ad {
+    padding: 10px 20px;
+    background-color: #2D9CDB;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+}
+
+.homeAbout-ad a:hover,
+.aboutAir-ad a:hover {
+    text-decoration: none;
+}
+
+.signUp-ad:hover {
+    background-color: #2D9CDB;
+    text-decoration: none;
+
+
+}
+
+
+@media (max-width: 768px) {
+    .flightImgAndAirway-ad {
+        margin-bottom: 0;
+    }
+
+    .flightSelectionStatus-ad {
+        margin-bottom: 10px;
+    }
+
+    .homeAboutSign-ad {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 0;
+    }
+
+    .homeAbout-ad {
+        margin-bottom: 10px;
+        text-decoration: none;
+        text-underline: none;
+    }
+
+    .PasFirstNames{
+        margin-top: -2rem;
+        color: #2D9CDB;
+        font-family: 'Lato';
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
