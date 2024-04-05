@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import logo from "/src/assets/logo_with_name.png";
 import icon from "/src/assets/SignupSuccessfulIcon.png";
 import homeImg from "/src/assets/umbrella.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const ResetPassword = () => {
@@ -42,6 +44,7 @@ const ResetPassword = () => {
           }
       );
       setShowModal(true);
+      toast(`Password reset successful`)
       setStatus(true);
       setSuccessMessage("Successful Password Reset");
 
@@ -58,7 +61,6 @@ const ResetPassword = () => {
 
       setStatus(false);
       setErrorMessage("Error");
-
       setShowModal(true);
       setModalMessage(errorMessage);
     }
@@ -123,6 +125,7 @@ const ResetPassword = () => {
                       Reset Password
                     </button>
                   </form>
+                  <ToastContainer/>
                   <p className="reset-alreadyHaveAnAccts">
                     Go back to {" "}
                     <Link to="/login" className="go-back-to-link">

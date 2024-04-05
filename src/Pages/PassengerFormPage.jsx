@@ -13,7 +13,7 @@ import data from "bootstrap/js/src/dom/data.js";
 import {Modal} from "react-bootstrap";
 import ModalPageTrip from "../Components/ModalPageTrip/ModalPageTrip.jsx"
 import { useNavigate } from 'react-router-dom';
-
+import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
 //
 // const handleSubmitBooking = async (formData) => {
 //     try {
@@ -32,6 +32,7 @@ const PassengerFormPage = ({ onComplete }) => {
     const [formData, setFormData] = useState([]);
     const [currentPassengerIndex, setCurrentPassengerIndex] = useState(0);
     const searchDetails = JSON.parse(localStorage.getItem("searchDetails"));
+    const [loading, setLoading] = useState(false);
     console.log(localStorage.getItem("selectedDepartingFlightId"));
     console.log(localStorage.getItem("selectedReturningFlightId"));
 
@@ -81,16 +82,16 @@ console.log("flightClassIds",flightClassIds)
     }, [formData]);
 
     const handleSubmitBooking = async (formData) => {
+        setLoading(true);
         try {
             const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData);
             console.log(response.data);
               const parts =response.data.split(':');
               const token = parts[1].trim()
-            alert(parts[0].trim());
             setBookingToken(token);
             console.log (bookingToken)
             setShowModal(true);
-            // Handle completion as needed
+            setLoading(false);
         } catch (error) {
             console.error('Error submitting form:', error);
             alert(error);
@@ -154,13 +155,22 @@ console.log("flightClassIds",flightClassIds)
     }
 
     return (
+        <div>
+            {loading && (
+                <img className="loading-textP" src={airwayAnimationPass} alt="Loading animation"/>
+            )}
+            {loading || (
         <div style={{ backgroundColor: '#F5F5F5' }}>
             <PassengerInformationAdultHeader />
             <PassengersInformationAdultMiddleTab searchDetails={searchDetails} />
             {renderForm()}
+
             <Modal show={showModal} onClose={() => setShowModal(false)}>
                 <ModalPageTrip isOpen={showModal} onClose={handleCloseModal} token = {bookingToken} />
             </Modal>
+
+                    </div>
+                )}
         </div>
     );
 };

@@ -5,10 +5,11 @@ import AeroplaneDown from './aeroplaneDown.svg'
 import {useState} from 'react'
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif"
+
 
 const ModalPageTrip = ({ isOpen, onClose, token }) => {
   const [tripSummary, setTripSummary] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [checkOutUrl, setCheckOutUrl] = useState('');
   const navigate = useNavigate()
@@ -16,6 +17,8 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
   const [verificationStatus, setVerificationStatus] = useState('');
   const [reference, setReference] = useState('');
   const bookingRef= tripSummary?.bookingRef;
+  const [loading, setLoading] = useState(false);
+
 
 
 
@@ -58,6 +61,7 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
       setReference(response.data.data.reference); // Assuming 'reference' is the correct field in your response data
       console.log(reference)
       setCheckOutUrl(response.data.data.authorization_url);
+
       console.log(checkOutUrl);
       window.location.href = response.data.data.authorization_url; // Navigate to the checkout URL
       console.log(tripSummary.bookingRef);
@@ -240,6 +244,7 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
         </button>
         </div>
       </div>
+
     
   );
 };

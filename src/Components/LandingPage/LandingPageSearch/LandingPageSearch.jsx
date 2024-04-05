@@ -6,6 +6,9 @@ import LandingImg from "/src/assets/LandingPage.png";
 import planeLandingForm from "/src/assets/plane-LandingForm.png";
 import polygonLandingForm from "/src/assets/Polygon-Landingform.png";
 import loginLandingForm from "/src/assets/loginLandingForm.png";
+import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Search = ({ setIsLoggedOut }) => {
     const [departurePort, setDeparturePort] = useState('');
@@ -19,6 +22,7 @@ const Search = ({ setIsLoggedOut }) => {
     const [flights, setFlights] = useState([]);
     const [departureOptions, setDepartureOptions] = useState([]);
     const [arrivalOptions, setArrivalOptions] = useState([]);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const handleOptionChange = (event) => {
         setTripType(event.target.value);
@@ -45,7 +49,7 @@ const Search = ({ setIsLoggedOut }) => {
         try {
             const response = await axios.post('http://localhost:8080/api/v1/auth/logout');
 
-            window.alert(response.data);
+            toast(`Logout successful`)
             setIsLoggedOut(true);
             localStorage.removeItem("user");
             localStorage.removeItem("userFirstName");
@@ -69,43 +73,48 @@ const Search = ({ setIsLoggedOut }) => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.get(
-                `http://localhost:8080/api/v1/flights/availableFlight?flightDirection=${tripType}&departurePort=${departurePort}&arrivalPort=${arrivalPort}&departureDate=${departureDate}&returnDate=${returnDate}`
-            );
-            setFlights(response.data);
-            console.log(response);
-            console.log(
-                departureDate,
-                departurePort,
-                arrivalPort,
-                noOfAdult,
-                noOfChildren,
-                noOfInfant,
-                returnDate
-            );
-            const searchDetails = {
-                departurePort,
-                arrivalPort,
-                departureDate,
-                returnDate,
-                noOfAdult,
-                noOfChildren,
-                noOfInfant,
-                tripType,
-            };
+        setLoading(true);
+        setTimeout(async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:8080/api/v1/flights/availableFlight?flightDirection=${tripType}&departurePort=${departurePort}&arrivalPort=${arrivalPort}&departureDate=${departureDate}&returnDate=${returnDate}`
+                );
 
-            localStorage.setItem("searchDetails", JSON.stringify(searchDetails));
-            console.log("saving search:", response.data);
+                setFlights(response.data);
+                console.log(response);
+                console.log(
+                    departureDate,
+                    departurePort,
+                    arrivalPort,
+                    noOfAdult,
+                    noOfChildren,
+                    noOfInfant,
+                    returnDate
+                );
+                const searchDetails = {
+                    departurePort,
+                    arrivalPort,
+                    departureDate,
+                    returnDate,
+                    noOfAdult,
+                    noOfChildren,
+                    noOfInfant,
+                    tripType,
+                };
 
-            navigate(`/flight-select`, {
-                state: response.data,
-                flightDetails: searchDetails,
-            });
-        } catch (error) {
-            console.error(`Error fetching flights:`, error);
-            alert(error.response.data);
-        }
+                localStorage.setItem("searchDetails", JSON.stringify(searchDetails));
+                console.log("saving search:", response.data);
+
+                navigate(`/flight-select`, {
+                    state: response.data,
+                    flightDetails: searchDetails,
+                });
+                setLoading(false);
+            } catch (error) {
+                console.error(`Error fetching flights:`, error);
+                alert(error.response.data);
+            }
+        },2000)
     };
 
     const handleDepartureDateChange = (e) => {
@@ -133,6 +142,12 @@ const Search = ({ setIsLoggedOut }) => {
     };
 
     return (
+        <div>
+            {loading && (
+                <img className="loading-textP" src={airwayAnimationPass} alt="Loading animation"/>
+            )}
+            {loading || (
+
         <div style={backgroundd}>
             <div className="booking-header">
                 <div className='header-first'>
@@ -243,8 +258,11 @@ const Search = ({ setIsLoggedOut }) => {
                     </div>
                     <button className="search-button" type='submit'><div className='search-button-text'>Search Flights</div></button>
                 </form>
+                <ToastContainer/>
             </div>
         </div>
+                )}
+                </div>
     );
 };
 
