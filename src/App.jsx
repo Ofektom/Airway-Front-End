@@ -8,6 +8,9 @@ import ForgotPasswordPage from './Pages/ForgotPasswordPage';
 import LandingPage from './Pages/LandingPage';
 import FlightSelectionOnePage from "./Pages/FlightSelectionOnePage.jsx";
 import PassengerFormPage from "./Pages/PassengerFormPage.jsx";
+import BookingConfirmationPage from "./Pages/BookingConfirmationPage.jsx";
+import TicketConfirmationPage from "./Pages/TicketConfirmationPage.jsx";
+import ConfirmationPage from "./Pages/ConfirmationPage.jsx";
 
 function App() {
   return (
@@ -21,8 +24,10 @@ function App() {
           <Route exact path="/api/v1/auth/reset-password/:token" element={<ResetPasswordPage />} />
           <Route exact path="/api/v1/auth/verifyRegistration" element={<VerifyPage/>}/>
             <Route exact path="/flight-select" element={<FlightSelectionOnePage/>}/>
-            <Route exact path="/passenger-information" element={<PassengerFormPage/>}
-            />
+            <Route exact path="/passenger-information" element={<PassengerFormPage/>}/>
+          <Route exact path="/confirmation-page" element={<ConfirmationPage />} />
+          <Route exact path="/ticket-confirmation/:token" element={<TicketConfirmationPage/>}/>
+          <Route exact path="/booking-confirmation/:token" element={<BookingConfirmationPage />} />
         </Routes>
       </Router>
 
