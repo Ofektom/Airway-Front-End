@@ -422,7 +422,7 @@ function FlightSelectionOne(props) {
             <div className="homeAbout">
               <ul className="menuu">
                 <li><Link to={"/"} className="menuu-item">Home</Link></li>
-                <li><Link to={"/about"} className="menuu-item">About us</Link></li>
+                <li><Link to={"/about"} className="menuu-item" >About us</Link></li>
                 <li>
                   {firstName ? (
                       <div className="uFirstName">
@@ -872,7 +872,7 @@ function FlightSelectionOne(props) {
                                     {convertTo12HourFormat(flight?.departureTime)}
                                   </div>
                                   <div className="deproute">
-                                    {flight?.departurePortCity}
+                                    {flight?.arrivalPortCity}
                                   </div>
                                 </div>
 
@@ -883,7 +883,7 @@ function FlightSelectionOne(props) {
                                     {convertTo12HourFormat(flight?.arrivalTime)}
                                   </div>
                                   <div className="arriveroute">
-                                    {flight?.arrivalPortCity}
+                                    {flight?.departurePortCity}
                                   </div>
                                 </div>
                               </div>
@@ -1005,7 +1005,7 @@ function FlightSelectionOne(props) {
                                     {convertTo12HourFormat(flight?.departureTime)}
                                   </div>
                                   <div className="deproute">
-                                    {flight?.departurePortCity}
+                                    {flight?.arrivalPortCity}
                                   </div>
                                 </div>
 
@@ -1016,7 +1016,7 @@ function FlightSelectionOne(props) {
                                     {convertTo12HourFormat(flight?.arrivalTime)}
                                   </div>
                                   <div className="arriveroute">
-                                    {flight?.arrivalPortCity}
+                                    {flight?.departurePortCity}
                                   </div>
                                 </div>
                               </div>

@@ -522,28 +522,33 @@
     display: flex;
     gap: 5px;
 
-}
-.homeAbout{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 28px;
-}
 
-.homeAboutSign  button{
-    background-color: #2D9CDB;
-    width: 100px;
-    padding: 0.5em;
-    margin-top: 0.6em;
-    border-radius: 5px;
+    .firstNamePass{
+        margin-left: 4rem;
+    }
 
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 28px;
 }
+/*.homeAbout{*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    gap: 10px;*/
+/*    font-size: 16px;*/
+/*    font-weight: 600;*/
+/*    line-height: 28px;*/
+/*}*/
+
+/*.homeAboutSign  button{*/
+/*    background-color: #2D9CDB;*/
+/*    width: 100px;*/
+/*    padding: 0.5em;*/
+/*    margin-top: 0.6em;*/
+/*    border-radius: 5px;*/
+
+/*    font-size: 16px;*/
+/*    font-weight: 700;*/
+/*    line-height: 28px;*/
+/*}*/
 
 /*.aboutAirnow{*/
 /*    background-color: red;*/

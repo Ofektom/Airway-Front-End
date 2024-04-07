@@ -111,8 +111,11 @@ const Search = ({ setIsLoggedOut }) => {
                 });
                 setLoading(false);
             } catch (error) {
+                setLoading(false)
                 console.error(`Error fetching flights:`, error);
                 alert(error.response.data);
+                navigate("/")
+
             }
         },2000)
     };
