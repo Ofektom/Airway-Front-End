@@ -14,6 +14,7 @@ import ConfirmationPage from "./Pages/ConfirmationPage.jsx";
 import AddFlightPage from "./Pages/AddFlightPage.jsx";
 import AdminDashBoardPage1 from "./Pages/AdminDashBoardPage1.jsx";
 import DeleteModalPage from "./Pages/DeleteModalPage.jsx";
+import ManageBooking from "./Pages/ManageBooking.jsx";
 
 function App() {
   return (
@@ -34,6 +35,8 @@ function App() {
           <Route exact path="/addflight" element={<AddFlightPage />}/>
           <Route exact path="/flight-listing" element={<AdminDashBoardPage1 />} />
           <Route exact path="/deleteModal-page" element={<DeleteModalPage />} />
+          <Route exact path="/flight-booking" element={<ManageBooking />} />
+
         </Routes>
       </Router>
 
