@@ -1,8 +1,14 @@
-import React from 'react'
+import AdminDashboardNavbar from '../Components/AdminDashboardNavbar/AdminDashboardNavbar'
+import AdminDashboardSide from '../Components/AdminDashboardSidebar/AdminDashboardSide'
+import FlightListing from "../Components/FlightListingPage/FlightListing.jsx";
 
-function AdminDashBoardPage1() {
+const AdminDashBoardPage1 = () => {
   return (
-    <div>AdminDashBoardPage1</div>
+      <>
+        <AdminDashboardSide/>
+        <AdminDashboardNavbar />
+        <FlightListing/>
+      </>
   )
 }
 
