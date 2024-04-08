@@ -28,7 +28,7 @@
     height: 89px;
     gap: 8px;
     margin-top: -20px;
-    
+
 }
 .login-logoo{
     display: flex;
@@ -66,7 +66,7 @@ Link{
     left: 85px;
     top: 20px;
     gap: 8px;
-    width: 314px;
+    width: 350px;
     height: 39px;
     font-family: 'Lato';
     font-style: normal;
@@ -85,11 +85,11 @@ Link{
     left: 0px;
 
 }
-#login-emailaddd{ 
+#login-emailaddd{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 445px;
+    width: 470px;
     height: 48px;
     gap: 8px;
     padding: 2px 16px 2px 20px;
@@ -128,11 +128,11 @@ Link{
     left: 0px;
 }
 
-#login-pswrdd{ 
+#login-pswrdd{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 445px;
+    width: 470px;
     height: 48px;
     gap: 8px;
     padding: 2px 16px 2px 20px;
@@ -358,8 +358,8 @@ Link{
     border-radius: 12px;
     gap: 16px;
     background: #001F3F;
-    top: 310px;
-    left: 4rem;
+    top: 290px;
+    left: 2rem;
     font-family: Inter;
     font-size: 14px;
     font-weight: 600;

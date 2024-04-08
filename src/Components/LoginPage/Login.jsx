@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Login() {
-  const [token, setToken] = useState("");
+  // const [token, setToken] = useState("");
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -36,7 +36,7 @@ function Login() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    
+
 
     try {
       const response= await api.post("/api/v1/auth/login", user, {
@@ -44,8 +44,9 @@ function Login() {
           "Content-Type": "application/json",
         },
       });
+      const token = await response.data;
+      localStorage.setItem("jwtToken", token);
 
-      const token = response.data;
       const decodedToken = jwtDecode(token);
       const userRole = decodedToken.role;
       const userFirstName = decodedToken.firstName;
@@ -53,20 +54,22 @@ function Login() {
       localStorage.setItem("userRole", JSON.stringify(userRole));
       localStorage.setItem("userFirstName", JSON.stringify(userFirstName))
       console.log(userRole);
-      toast(`Login successful`)
+
       setShowModal(true);
       setStatus(true);
       setSuccessMessage("Success");
 
       if (userRole === "ADMIN") {
         setTimeout(() => {
-          navigate("/admin-dashboard-1");
-        }, 3000);
+          navigate("/flight-listing");
+        }, 1000);
       } else if (userRole === "PASSENGER") {
         setTimeout(() => {
-          navigate("/");
-            }, 3000);
-    }
+          navigate("/flight-select");
+        }, 1000);
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       // Handle the error here
       console.error("Error during Login:", error);
@@ -111,13 +114,13 @@ function Login() {
                 <div className="login-roww">
                   <label htmlFor="email" className="login-email-titlee">Email Address</label>
                   <br/>
-                  <input 
-                      type="email" 
-                      id="login-emailaddd" 
-                      name="email"  
+                  <input
+                      type="email"
+                      id="login-emailaddd"
+                      name="email"
                       placeholder="Enter your Email..."
                       value={email}
-                      onChange={(e) => onInputChange(e)} 
+                      onChange={(e) => onInputChange(e)}
                       required/>
                   <br/>
                 </div>
@@ -125,11 +128,11 @@ function Login() {
                 <div className="login-roww">
                   <label htmlFor="password" id="login-paswrdd">Password</label>
                   <br/>
-                  <input 
-                      type="password" 
-                      id="login-pswrdd" 
-                      name="password" 
-                      value={password} 
+                  <input
+                      type="password"
+                      id="login-pswrdd"
+                      name="password"
+                      value={password}
                       onChange={(e) => onInputChange(e)}
                       placeholder="Enter your Password..." required/>
                   <br/>
@@ -147,7 +150,7 @@ function Login() {
                     <span id="login-signn"/>
                     Sign in with Google
                   </button>
-                  
+
                   <button type="submit" id="login-buttonn">
                     <span>LOG IN</span>
                   </button>

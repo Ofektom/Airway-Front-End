@@ -134,11 +134,11 @@ const Search = ({ setIsLoggedOut }) => {
     const backgroundd = {
         backgroundImage: `url(${LandingImg})`,
         height: '782px',
-        width: '1160px',
+        width: '1500px',
         maxWidth: '100%',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        padding: '100px',
+        padding: '10px',
         paddingRight: '13%',
         position: 'absolute',
         top: '78px'
