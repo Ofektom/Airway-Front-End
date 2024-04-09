@@ -125,3 +125,6 @@
     color: #323232;
 
 }
+.active-link {
+    color: #ff0000; /* Change to the desired color */
+}

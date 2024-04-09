@@ -318,25 +318,39 @@
 
 .paginations {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    align-items: center;
     margin-top: 20px;
+    margin-left: 25rem;
 }
 
 .paginations button {
-    background-color: #007bff;
-    border: none;
-    color: white;
+    background-color: #ffffff;
+    border: 2px solid #001f3f;
     padding: 10px 20px;
-    margin: 0 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 9rem;
 }
 
 .paginations button:hover {
-    background-color: #0056b3;
+    background: #001f3f;
+    color: #001f3f;
+    transform: scale(1.1);
+
 }
 
+
+
 .paginations button:disabled {
-    background-color: #ccc;
+    background-color: #ffffff;
+    color: #001f3f;/* Grey */
     cursor: not-allowed;
 }
 

@@ -22,7 +22,7 @@ const AdminBookingSideBar = () => {
                         <div className='Bsidebar-flight-booking-text'>Booking</div>
                     </div>
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/passenger"}>
                     <div className='Bsidebar-flight-user'>
                         <img className='Bsidebar-flight-user-icon' src={userImg} alt="user" />
                         <div className='Bsidebar-flight-user-text'>Users</div>

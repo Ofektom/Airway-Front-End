@@ -9,4 +9,4 @@ const FlightListingPage = () => {
     );
 };
 
-export default FlightListingPage;
+ export default FlightListingPage;

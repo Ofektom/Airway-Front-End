@@ -145,7 +145,7 @@ function ManageBooking({isLoggedOut}) {
   };
 
   const handleNavBook = () => {
-    navigate(`/landing-page`);
+    navigate(`/`);
   };
 
   const goToPage = (page) => {

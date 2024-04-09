@@ -9,16 +9,43 @@ import 'react-toastify/dist/ReactToastify.css';
 const AdminDashboardNavbar = () => {
   const [searchText, setSearchText] = useState('');
   const [isFilterOpen, setFilterOpen] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const navigate = useNavigate();
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  const performSearch = () => {
-    // Add code to manage the search props
+  useEffect(() => {
+
+    fetchAllUsers();
+  }, []);
+
+  // const fetchAllUsers = async () => {
+  //   try {
+  //     const response = await fetch('/api/v1/passenger/get-passengers');
+  //     if (!response.ok) {
+  //       throw new Error('Failed to fetch users');
+  //     }
+  //     const usersData = await response.json();
+  //     setAllUsers(usersData);
+  //   } catch (error) {
+  //     console.error('Error fetching users:', error.message);
+  //   }
+  // };
+  const fetchAllUsers = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/api/v1/passenger/get-passengers');
+      if (!response.ok) {
+        throw new Error('Failed to fetch users');
+      }
+      const usersData = await response.json();
+      setAllUsers(usersData);
+    } catch (error) {
+      console.error('Error fetching users:', error.message);
+      toast.error('Failed to fetch users. Please try again later.');
+    }
   };
 
-  useEffect(() => {
-    performSearch();
-  }, [selectedFilters, performSearch]);
+
 
   const handleCheckboxChange = (filter) => {
     if (selectedFilters.includes(filter)) {
@@ -31,10 +58,41 @@ const AdminDashboardNavbar = () => {
   };
 
 
+  // const handleSearchChange = (e) => {
+  //   const query = e.target.value;
+  //   setSearchText(query);
+  //   performSearch(query, selectedFilters);
+  // };
+
+  useEffect(() => {
+    filterUsers();
+  }, [searchText, allUsers]);
+
+  // const filterUsers = () => {
+  //   const filtered = allUsers.filter(user =>
+  //       user.name(searchText.toLowerCase()) ||
+  //       user.surname.includes(searchText.toLowerCase()) ||
+  //       user.email.includes(searchText.toLowerCase()) ||
+  //       user.phoneNumber.includes(searchText)
+  //   );
+  //   setFilteredUsers(filtered);
+  // };
+
+  const filterUsers = () => {
+    const filtered = allUsers.filter(user =>
+        (searchText &&
+            ((user.firstName && user.firstName.toLowerCase().includes(searchText.toLowerCase())) ||
+                (user.lastName && user.lastName.toLowerCase().includes(searchText.toLowerCase())) ||
+                (user.passengerEmail && user.passengerEmail.toLowerCase().includes(searchText.toLowerCase())) ||
+                (user.phoneNumber && user.phoneNumber.includes(searchText))))
+    );
+    setFilteredUsers(filtered);
+  };
+
+
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchText(query);
-    performSearch(query, selectedFilters);
   };
 
 
@@ -82,10 +140,10 @@ const AdminDashboardNavbar = () => {
         </div>
 
         <div className='admin-navbar-filter' onClick={toggleFilterModal}>
-          <img className='navbar-filter-icon' src="../src/assets/filter-icon.png" alt="filter" />
+          <img className='navbar-filter-icon' src="/src/assets/filter-icon.png" alt="filter" />
         </div>
         <div onClick={(e) => logout(e)} className='admin-navbar-logout'>
-          <img className='navbar-logout-icon' src="../src/assets/navbar-logout-icon.png" alt="logout" />
+          <img className='navbar-logout-icon' src="/src/assets/navbar-logout-icon.png" alt="logout" />
           <div className='navbar-logout-text'>Log Out</div>
         </div>
         <ToastContainer/>

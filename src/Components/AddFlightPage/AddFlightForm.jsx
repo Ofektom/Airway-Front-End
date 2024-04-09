@@ -187,7 +187,6 @@ const AddFlightForm = () => {
         </div>
     );
 };
-
 const FlightForm = ({ handleSubmit, handleChange, formData, departureOptions, arrivalOptions }) => {
     return (
         <form onSubmit={handleSubmit} className="form-container">

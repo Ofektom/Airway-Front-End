@@ -437,10 +437,10 @@ const FlightListing = () => {
 
                         ))}
                         <div className="paginations">
-                            <button style={{backgroundColor: flightList.length === 0 ? "transparent" : "#007bff"}}
+                            <button style={{backgroundColor: flightList.length === 0 ? "transparent" : "#ffffff"}}
                                     onClick={handlePrevPage} disabled={currentPage === 1}>Previous
                             </button>
-                            <button style={{backgroundColor: flightList.length === 0 ? "transparent" : "#007bff"}}
+                            <button style={{backgroundColor: flightList.length === 0 ? "transparent" : "#ffffff"}}
                                     onClick={handleNextPage} disabled={flightList.last}>Next
                             </button>
                         </div>

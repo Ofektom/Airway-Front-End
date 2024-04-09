@@ -1,4 +1,3 @@
-// PassengerFormPage.js
 import React, { useState, useEffect } from 'react';
 import AdultForm from '../Components/PassengerIformationAdult/PassengerInformationAdultLowerTab/PassengerInformationAdultLowerTab.jsx';
 import ChildForm from '../Components/PassengerInformationChild/PassengerInformationChildLowerTab/PassengerInformationChildLowerTab.jsx';
@@ -14,18 +13,7 @@ import {Modal} from "react-bootstrap";
 import ModalPageTrip from "../Components/ModalPageTrip/ModalPageTrip.jsx"
 import { useNavigate } from 'react-router-dom';
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
-//
-// const handleSubmitBooking = async (formData) => {
-//     try {
-//         const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData);
-//         console.log(response.data); // Log the response from the backend
-//         alert(response.data);
-//         onComplete(response.data);
-//     } catch (error) {
-//         console.error('Error submitting form:', error);
-//         alert(error);
-//     }
-// };
+
 
 
 const PassengerFormPage = ({ onComplete }) => {
@@ -41,10 +29,8 @@ const PassengerFormPage = ({ onComplete }) => {
     const departingFlightData = JSON.parse(localStorage.getItem("selectedDepartingFlightId"));
     const returningFlightData = JSON.parse(localStorage.getItem("selectedReturningFlightId"));
 
-// Create an array to store available flight class IDs
     const flightClassIds = [];
 
-// Check if departingFlightData is available and its classId is defined
     if (departingFlightData) {
         flightClassIds.push({ classId: departingFlightData });
     }
@@ -94,7 +80,7 @@ console.log("flightClassIds",flightClassIds)
             setLoading(false);
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert(error);
+            alert("An error occured in the process");
         }
     };
 
