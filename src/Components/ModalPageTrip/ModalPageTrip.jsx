@@ -6,6 +6,7 @@ import {useState} from 'react'
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif"
+import {toast} from "react-toastify";
 
 
 const ModalPageTrip = ({ isOpen, onClose, token }) => {
@@ -68,9 +69,15 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
       console.log(response.data);
       console.log(reference)
     } catch (error) {
+
       console.log("************");
       console.log("Payment initialization error:", error);
       console.log("************");
+      const errorMessage =
+          error.response?.data?.message ||
+          "An error occurred in the process. Please try again.";
+
+      toast.error(errorMessage);
     }
   }
   useEffect(() => {

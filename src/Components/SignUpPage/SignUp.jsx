@@ -10,6 +10,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+import {toast} from "react-toastify";
 
 
 
@@ -69,7 +70,7 @@ const SignUp = () => {
         const errorMessage =
             error.response?.data?.message ||
             "An error occurred during SignUp. Please try again.";
-
+          toast.error(errorMessage);
         setStatus(false);
         setErrorMessage("Error");
 

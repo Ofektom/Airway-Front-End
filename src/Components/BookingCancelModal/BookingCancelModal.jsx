@@ -1,6 +1,9 @@
 import "./BookingCancelModal.css"
 import React, {useEffect, useState} from 'react';
 import modalIcon from "/src/assets/Icon.png"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const BookingCancelModal = ({cancelBooking, onCancel, bookingId, bookingRef}) => {
     const [loading, setLoading] = useState(false);
@@ -13,6 +16,10 @@ const BookingCancelModal = ({cancelBooking, onCancel, bookingId, bookingRef}) =>
             onCancel();
         } catch (error) {
             console.error('Error cancelling booking:', error.message);
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred in the process. Please try again.";
+            toast.error(errorMessage);
         }
         setLoading(false);
     };
@@ -34,6 +41,7 @@ const BookingCancelModal = ({cancelBooking, onCancel, bookingId, bookingRef}) =>
                     <button className="cancelBtn-cancel" onClick={onCancel}>No</button>
                 </div>
             </div>
+            <ToastContainer/>
         </div>
     );
 };

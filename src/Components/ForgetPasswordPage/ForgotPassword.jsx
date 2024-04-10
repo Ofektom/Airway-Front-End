@@ -4,6 +4,9 @@ import axios from "axios";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+import successfulIcon from "/src/assets/SignupSuccessfulIcon.png"
+import airwayLogo from "/src/assets/airway_logo.svg"
+import rectangleImg from "/src/assets/Rectangle 58.svg"
 
 
 const ForgotPassword = () => {
@@ -57,6 +60,7 @@ const ForgotPassword = () => {
                 error.response?.data?.message ||
                 "Kindly check that you have inputted the correct email. If the issue persists, please try again later."
             );
+            setLoading(false)
         }
     };
 
@@ -74,12 +78,12 @@ const ForgotPassword = () => {
             )}
             {loading || (
         <div className="forget-password-container">
-            <img src="../src/assets/Rectangle 58.svg" alt="Your Image" className="forget-password-image" />
+            <img src={rectangleImg} alt="Your Image" className="forget-password-image" />
             <div className="forget-password-content-container">
                 <div className="password-reset-items">
                     
                     <div className="forgot-password-logo-title">
-                    <Link to={"/"}><img className="forgot-password-logo-image" src="../src/assets/airway_logo.svg"/></Link>
+                    <Link to={"/"}><img className="forgot-password-logo-image" src={airwayLogo}/></Link>
                         <div className="create-acct-text">Reset your password</div>
                     </div>
                    
@@ -115,7 +119,7 @@ const ForgotPassword = () => {
                         </Modal.Title>
                       </div>
                       <div className="forgot-modal-icon">
-                          <img src="../src/assets/SignupSuccessfulIcon.png"alt="modal icon"/>
+                          <img src={successfulIcon} alt="modal icon"/>
                       </div>
                         <div className="forgot-modal-body">
                           <Modal.Body>

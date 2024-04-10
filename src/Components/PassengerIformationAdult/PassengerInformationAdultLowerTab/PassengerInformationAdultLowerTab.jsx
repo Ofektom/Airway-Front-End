@@ -371,18 +371,7 @@ const PassengersInformationAdultLowerTab = ({passenger, onSubmit, navigateToPrev
             <div className="contact-info-headline-adult">
                 <span>Contact Information</span>
             </div>
-            {/*<div className="contact-info-form-adult">*/}
-            {/*    <div className="grid-container-adult">*/}
-            {/*        <div className="grid-item-adult">*/}
-            {/*            <label htmlFor="phoneNumber">Phone Number</label>*/}
-            {/*            <input type="text" id="phoneNumber" placeholder="Enter your phone number" name="phoneNumber" defaultValue={passenger && passenger.phoneNumber} className="input-field"/>*/}
-            {/*        </div>*/}
-            {/*        <div className="grid-item-adult">*/}
-            {/*            <label htmlFor="passengerEmail">Email address</label>*/}
-            {/*            <input type="text" id="passengerEmail" placeholder="Please enter your valid email address" name="passengerEmail" className="input-field" defaultValue={passenger && passenger.passengerEmail} />*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+
             <div className="primary-contact-checkbox">
                 <input type="checkbox" id="contact" name="contact"
                 checked={isChecked}

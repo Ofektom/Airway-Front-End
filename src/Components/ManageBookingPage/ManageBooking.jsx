@@ -208,24 +208,19 @@ function ManageBooking({isLoggedOut}) {
 
 
 
-
-
-
-
-
         return (
-            item.bookingReferenceCode.includes(query.trim()) ||
-            item.tripType.includes(query.trim()) || // Search by trip type (case-insensitive)
-            item.bookingStatus.toLowerCase().includes(query.trim().toLowerCase()) ||
-            item.passengerCode.includes(query.trim()) ||
+            item.bookingReferenceCode && item.bookingReferenceCode.toLowerCase().includes(lowerCaseQuery.toLowerCase())||
+             item.tripType && item.tripType.toLowerCase().includes(lowerCaseQuery.toLowerCase())||
+            item.bookingStatus && item.bookingStatus.toLowerCase().includes(query.trim().toLowerCase())||
+            item.passengerCode && item.passengerCode.toLowerCase().includes(query.trim())||
             modifiedFormattedDate.includes(query.trim())||
-            formattedDate.includes(query.trim())||
-            (item.bookingFlights && item.bookingFlights.some(flight => {
-              const lowerCaseFlightNo = flight && flight.flight && flight.flight.flightNo; // Convert flightNo to lowercase
-              const pnrCode = flight && flight.pnr && flight.pnr.pnrcode; // Remove null checks
-              return (
-                  (lowerCaseFlightNo && lowerCaseFlightNo.includes(lowerCaseQuery)) ||
-                  (pnrCode && pnrCode.includes(lowerCaseQuery))
+             formattedDate.includes(query.trim())||
+           (item.bookingFlights && item.bookingFlights.some(flight => {
+             const lowerCaseFlightNo = flight && flight.flight && flight.flight.flightNo;
+            const pnrCode = flight && flight.pnr && flight.pnr.pnrcode;
+               return (
+                   (lowerCaseFlightNo && lowerCaseFlightNo.toLowerCase().includes(lowerCaseQuery.toLowerCase())) ||
+                  (pnrCode && pnrCode.toLowerCase().includes(lowerCaseQuery.toLowerCase()))
               );
             }))
         );
@@ -251,11 +246,11 @@ function ManageBooking({isLoggedOut}) {
             <form>
               <input
                   className='Booking-admin-navbar-search-text'
-                  type="text"
+                  type="search"
                   name="text"
                   value={searchQuery}
                   onChange={handleChange}
-                  placeholder="Search for Flight....."
+                  placeholder="Search for Booking....."
                   required
               />
 
@@ -397,8 +392,8 @@ function ManageBooking({isLoggedOut}) {
                                     <td>{passenger.dateOfBirth}</td>
                                     <td>{passenger.phoneNumber}</td>
                                     <td>{passenger.passengerEmail}</td>
-                                    <td>{passenger.seat[flightIndex]}</td>
-                                    <td>{passenger.tickets[flightIndex]}</td>
+                                    <td>{passenger.seat[flightIndex]?.seatLabel}</td>
+                                    <td>{passenger.tickets[flightIndex]?.ticketNo}</td>
                                   </tr>
                                   {/*<tr>*/}
                                   {/*  <td>Lois</td>*/}
@@ -529,8 +524,8 @@ function ManageBooking({isLoggedOut}) {
                           <td>{passenger.dateOfBirth}</td>
                           <td>{passenger.phoneNumber}</td>
                           <td>{passenger.passengerEmail}</td>
-                          <td>{passenger.seat[flightIndex]}</td>
-                          <td>{passenger.tickets[flightIndex]}</td>
+                          <td>{passenger.seat[flightIndex]?.seatLabel}</td>
+                          <td>{passenger.tickets[flightIndex]?.ticketNo}</td>
                         </tr>
                         </tbody>
                         ))}
@@ -549,7 +544,7 @@ function ManageBooking({isLoggedOut}) {
         <div className="Booking-pagination">
           <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
           <span>{currentPage} of {totalPages}</span>
-          <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+          <button onClick={() => goToPage(currentPage + 1)} disabled={bookings.length<PAGE_SIZE}>Next</button>
         </div>
         <ToastContainer autoClose={5000}/>
         {cancelModalOpen && (

@@ -3,7 +3,7 @@
     display: flex;
     z-index: 999;
     width: 13rem;
-    height: 12rem;
+    height: auto;
     padding: 10px 12px 10px 12px;
     gap: 10px;
     background: #FFFFFF;
@@ -20,7 +20,7 @@
 
 .Bfilter-inner-container {
     width: 172px;
-    height: 220px;
+    height: auto;
     gap: 4px;
 }
 

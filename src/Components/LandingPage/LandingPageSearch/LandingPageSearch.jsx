@@ -58,6 +58,13 @@ const Search = ({ setIsLoggedOut }) => {
             navigate('/');
         } catch (error) {
             console.error('Error during logout:', error.message);
+            setLoading(false)
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred in the process. Please try again.";
+
+            toast.error(errorMessage);
+
         }
     };
 

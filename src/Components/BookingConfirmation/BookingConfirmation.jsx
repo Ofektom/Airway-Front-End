@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import airwayAnimPass from "/src/assets/images/airwayanimPass.gif"
+import {toast, ToastContainer} from "react-toastify";
 
 const BookingConfirmation = () => {
     const [title, setTitle] = useState('');
@@ -49,6 +50,10 @@ const BookingConfirmation = () => {
             } catch (error) {
                 console.error('Error fetching ports:', error);
                 setError('Error fetching booking confirmation. Please try again later.');
+                const errorMessage =
+                    error.response?.data?.message ||
+                    "An error occurred in the process. Please try again.";
+                toast(errorMessage);
             }
         };
 
@@ -85,6 +90,11 @@ const BookingConfirmation = () => {
             console.log("************");
             console.log("Payment initialization error:", error);
             console.log("************");
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred in the process. Please try again.";
+
+            toast.error(errorMessage);
         }
     }
     useEffect(() => {
@@ -235,6 +245,7 @@ const BookingConfirmation = () => {
 
 
             </div>
+            <ToastContainer/>
         </div>
 
     )

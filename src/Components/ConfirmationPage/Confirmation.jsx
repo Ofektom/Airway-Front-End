@@ -10,6 +10,8 @@ import axios from "axios";
 
 import {useNavigate, useParams} from 'react-router-dom'
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Confirmation() {
@@ -38,6 +40,11 @@ function Confirmation() {
         } catch (error) {
           setError(error);
           console.error('Error verifying transaction:', error);
+          const errorMessage =
+              error.response?.data?.message ||
+              "An error occurred the process. Please try again.";
+          toast.error(errorMessage);
+
         } finally {
           setLoading(false);
         }
@@ -193,6 +200,7 @@ function Confirmation() {
             </div>
           </div>
         </div>
+        <ToastContainer/>
       </div>
   )
 }

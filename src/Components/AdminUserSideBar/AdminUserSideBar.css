@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-.Badmin-sidebar-container{
+.admin-sidebar-containerUser{
     width: 241px;
     height: 1024px;
     padding: 49px, 89px, 729px, 29px;
@@ -7,7 +7,7 @@
     background: #FFFFFF;
     border: 1px solid #1E1E1E33;
 }
-.Bairway-logo{
+.airway-logoUser{
     position: absolute;
     width: 123px;
     height: 42px;
@@ -16,8 +16,10 @@
     gap: 4px;
 
 }
-
-.Bsidebar-menu-container{
+.airway-logoUser:hover{
+    transform: scale(1.1);
+}
+.sidebar-menu-containerUser{
     position: absolute;
     width: 121px;
     height: 171px;
@@ -25,7 +27,7 @@
     left: 29px;
     gap: 25px;
 }
-.Bsidebar-flight-listing{
+.sidebar-flight-listingUser{
     position: absolute;
     display: flex;
     width: 121px;
@@ -35,19 +37,18 @@
 
 }
 
-.Bsidebar-flight-listing:hover{
-    color:  #323232;
+.sidebar-flight-listingUser:hover{
+    border-radius: 1px;
     transform: scale(1.1);
-
 }
 
 
-.Bsidebar-flight-listing-icon{
+.sidebar-flight-listing-iconUser{
     width: 24px;
     height: 24px;
 
 }
-.Bsidebar-flight-listing-text{
+.sidebar-flight-listing-textUser{
     width: 90px;
     height: 21px;
     font-family: Lato;
@@ -56,10 +57,11 @@
     line-height: 21px;
     letter-spacing: 0px;
     text-align: left;
-    color:  #323232;
+    color: #323232;
+
 
 }
-.Bsidebar-flight-booking{
+.sidebar-flight-bookingUser{
     position: absolute;
     display: flex;
     width: 121px;
@@ -68,22 +70,20 @@
     top: 50px;
 
 }
-.Bsidebar-flight-booking:hover{
-    color: blue;
+.sidebar-flight-bookingUser:hover{
+    border-radius: 1px;
     transform: scale(1.1);
 }
 
-.Bsidebar-flight-booking-icon{
+.sidebar-flight-booking-iconUser{
     position: relative;
     width: 20px;
     height: 19px;
     top: 2px;
     left: 2px;
-    color:blue;
 
 }
-
-.Bsidebar-flight-booking-text{
+.sidebar-flight-booking-textUser{
     width: 58px;
     height: 21px;
     font-family: Lato;
@@ -92,9 +92,9 @@
     line-height: 21px;
     letter-spacing: 0px;
     text-align: left;
-    color: #2D9CDB;
+    color: #323232;
 }
-.Bsidebar-flight-user{
+.sidebar-flight-userUser{
     display: flex;
     position: absolute;
     width: 89px;
@@ -103,19 +103,19 @@
     top: 100px;
     border-radius: 1px;
 }
-.Bsidebar-flight-user:hover{
-    color: blue;
+.sidebar-flight-userUser:hover{
+    border-radius: 1px;
     transform: scale(1.1);
 }
 
-.Bsidebar-flight-user-icon{
+.sidebar-flight-user-iconUser{
     width: 18.41px;
     height: 18px;
     top: 3px;
     left: 3px;
 
 }
-.Bsidebar-flight-user-text{
+.sidebar-flight-user-textUser{
     width: 40px;
     height: 21px;
     font-family: Lato;
@@ -124,6 +124,6 @@
     line-height: 21px;
     letter-spacing: 0px;
     text-align: left;
-    color: #323232;
+    color:#2D9CDB ;
 
 }

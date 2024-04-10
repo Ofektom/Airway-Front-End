@@ -77,11 +77,13 @@ function Login() {
           error.response?.data?.message ||
           "An error occurred during Login. Please try again.";
 
+      toast.error(errorMessage);
       setStatus(false);
       setErrorMessage("Error");
-
+console.log(errorMessage)
       setShowModal(true);
       setModalMessage(errorMessage);
+      console.log(modalMessage)
     }
   };
 

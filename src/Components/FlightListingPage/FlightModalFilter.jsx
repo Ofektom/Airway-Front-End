@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './BookingModalFilter.css';
-const BookingModalFilter = ({ isOpen, handleCheckboxChange, closeFilterModal }) => {
+const FlightModalFilter = ({ isOpen, handleCheckboxChange, closeFilterModal }) => {
     const [selectedFilters, setSelectedFilters] = useState([]);
 
     useEffect(() => {
@@ -22,7 +21,6 @@ const BookingModalFilter = ({ isOpen, handleCheckboxChange, closeFilterModal }) 
                         id="dateFilter"
                         name="dateFilter"
                         onChange={() => handleFilterChange('createdAt')}
-                        // checked={selectedFilters.includes('Date')}
                     />
                     <label htmlFor="dateFilter">
                         Date
@@ -34,7 +32,6 @@ const BookingModalFilter = ({ isOpen, handleCheckboxChange, closeFilterModal }) 
                         id="refFilter"
                         name="refFilter"
                         onChange={() => handleFilterChange('bookingRef')}
-                        // checked={selectedFilters.includes('Booking Reference No')}
                     />
                     <label htmlFor="refFilter">
                         Booking Ref Number
@@ -46,7 +43,6 @@ const BookingModalFilter = ({ isOpen, handleCheckboxChange, closeFilterModal }) 
                         id="flightNoFilter"
                         name="flightNoFilter"
                         onChange={() => handleFilterChange('flightNo')}
-                        // checked={selectedFilters.includes('Flight No')}
                     />
                     <label htmlFor="flightNoFilter">
                         Flight Number
@@ -58,35 +54,63 @@ const BookingModalFilter = ({ isOpen, handleCheckboxChange, closeFilterModal }) 
                         id="PNRFilter"
                         name="PNRFilter"
                         onChange={() => handleFilterChange('pnrcode')}
-                        // checked={selectedFilters.includes('PNR')}
                     />
                     <label htmlFor="PNRFilter">
-PNR
+                        PNR
                     </label>
                 </div>
                 <div className="Bfilter-checkbox">
                     <input
                         type="checkbox"
-                        id="passengerCode"
-                        name="passengerCode"
-                        onChange={() => handleFilterChange('passengerCode')}
-
-                        // checked={selectedFilters.includes('passengerCode')}
+                        id="departureDateFilter"
+                        name="departureDateFilter"
+                        onChange={() => handleFilterChange('departureDate')}
                     />
-                    <label htmlFor="passengerCode">
-                        UserId
+                    <label htmlFor="departureDateFilter">
+                        Departure Date
                     </label>
-                </div>
+                </div> <div className="Bfilter-checkbox">
+                <input
+                    type="checkbox"
+                    id="arrivalDateFilter"
+                    name="arrivalDateFilter"
+                    onChange={() => handleFilterChange('arrivalDate')}
+                />
+                <label htmlFor="arrivalDateFilter">
+                    Arrival Date
+                </label>
+            </div> <div className="Bfilter-checkbox">
+                <input
+                    type="checkbox"
+                    id="departurePortFilter"
+                    name="departurePortFilter"
+                    onChange={() => handleFilterChange('departurePort')}
+                />
+                <label htmlFor="departurePortFilter">
+                    Departure Port
+                </label>
+            </div> <div className="Bfilter-checkbox">
+                <input
+                    type="checkbox"
+                    id="arrivalPortFilter"
+                    name="arrivalPortFilter"
+                    onChange={() => handleFilterChange('arrivalPort')}
+                />
+                <label htmlFor="arrivalPortFilter">
+                    Arrival Port
+                </label>
+            </div>
+
 
             </div>
         </div>
     );
 };
 
-BookingModalFilter.propTypes = {
+FlightModalFilter.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-     handleCheckboxChange: PropTypes.func.isRequired,
+    handleCheckboxChange: PropTypes.func.isRequired,
     closeFilterModal: PropTypes.func.isRequired,
 };
-export default BookingModalFilter
+export default FlightModalFilter;
 

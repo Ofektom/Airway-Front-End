@@ -13,6 +13,7 @@ import {Modal} from "react-bootstrap";
 import ModalPageTrip from "../Components/ModalPageTrip/ModalPageTrip.jsx"
 import { useNavigate } from 'react-router-dom';
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
+import {toast} from "react-toastify";
 
 
 
@@ -66,11 +67,26 @@ console.log("flightClassIds",flightClassIds)
             });
         }
     }, [formData]);
-
+    const [bearertoken, setBearerToken ] = useState("");
+    useEffect(()=> {
+        const jwtToken = localStorage?.getItem("jwtToken")
+        if (jwtToken) {
+            setBearerToken("Bearer " + jwtToken)
+            console.log(bearertoken)
+        }
+    },[]);
     const handleSubmitBooking = async (formData) => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData);
+            const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData,{
+               method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': bearertoken,
+                },
+                withCredentials:true,
+            });
+
             console.log(response.data);
               const parts =response.data.split(':');
               const token = parts[1].trim()
@@ -80,7 +96,13 @@ console.log("flightClassIds",flightClassIds)
             setLoading(false);
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert("An error occured in the process");
+            setLoading(false)
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred in the process. Please try again.";
+
+            toast.error(errorMessage);
+
         }
     };
 

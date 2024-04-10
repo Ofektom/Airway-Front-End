@@ -1,13 +1,13 @@
-import AdminDashboardSide from "../Components/AdminDashboardSidebar/AdminDashboardSide.jsx";
-import AdminDashboardNavbar from "../Components/AdminDashboardNavbar/AdminDashboardNavbar.jsx";
+import AdminUserSideBar from "../Components/AdminUserSideBar/AdminUserSideBar.jsx";
+import AdminUserNavBar from "../Components/AdminUserNavBar/AdminUserNavBar.jsx";
 import AdminDashboardUser from "../Components/AdminDashboardUser/AdminDashboardUser.jsx";
 import React from "react";
 
 function AdminUserManagementPage () {
     return (
         <>
-            <AdminDashboardNavbar />
-            <AdminDashboardSide/>
+            {/*<AdminUserNavBar />*/}
+            <AdminUserSideBar/>
             <AdminDashboardUser />
         </>
 
