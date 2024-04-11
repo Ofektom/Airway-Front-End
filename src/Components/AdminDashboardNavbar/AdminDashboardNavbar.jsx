@@ -1,24 +1,22 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AdminDashboardNavbar.css';
 import { useNavigate } from 'react-router-dom';
-import ModalFilter from '../ModalFilter/ModalFilter';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import filterIcon from "/src/assets/filter-icon.png"
+import logoutIcon from  "/src/assets/bellNotifImg.svg"
+import FlightModalFilter from "../FlightListingPage/FlightModalFilter.jsx";
 
 const AdminDashboardNavbar = () => {
   const [searchText, setSearchText] = useState('');
   const [isFilterOpen, setFilterOpen] = useState(false);
+  const [allUsers, setAllUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(''); // Define searchQuery state variable
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const navigate = useNavigate();
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  const performSearch = () => {
-    // Add code to manage the search props
-  };
-
-  useEffect(() => {
-    performSearch();
-  }, [selectedFilters, performSearch]);
 
   const handleCheckboxChange = (filter) => {
     if (selectedFilters.includes(filter)) {
@@ -31,10 +29,14 @@ const AdminDashboardNavbar = () => {
   };
 
 
+
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchText(query);
-    performSearch(query, selectedFilters);
+  };
+
+  const handleChange = (event) => {
+    setSearchQuery(event.target.value);
   };
 
 
@@ -50,6 +52,11 @@ const AdminDashboardNavbar = () => {
       navigate('/');
     } catch (error) {
       console.error('Error during logout:', error.message);
+      const errorMessage =
+          error.response?.data?.message ||
+          "An error occurred during Login out. Please try again.";
+
+      toast.error(errorMessage);
     }
   };
 
@@ -82,15 +89,19 @@ const AdminDashboardNavbar = () => {
         </div>
 
         <div className='admin-navbar-filter' onClick={toggleFilterModal}>
-          <img className='navbar-filter-icon' src="../src/assets/filter-icon.png" alt="filter" />
+          <img className='navbar-filter-icon' src={filterIcon} alt="filter" />
         </div>
         <div onClick={(e) => logout(e)} className='admin-navbar-logout'>
-          <img className='navbar-logout-icon' src="../src/assets/navbar-logout-icon.png" alt="logout" />
+          <img className='navbar-logout-icon' src={logoutIcon} alt="logout" />
           <div className='navbar-logout-text'>Log Out</div>
         </div>
         <ToastContainer/>
         <div>
-          <ModalFilter isOpen={isFilterOpen} handleCheckboxChange={handleCheckboxChange} closeFilterModal={closeFilterModal} />
+          <FlightModalFilter
+              isOpen={isFilterOpen}
+              closeFilterModal={closeFilterModal}
+              handleCheckboxChange={handleChange}
+          />
         </div>
       </div>
 

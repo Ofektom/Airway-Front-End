@@ -1,4 +1,3 @@
-// PassengerFormPage.js
 import React, { useState, useEffect } from 'react';
 import AdultForm from '../Components/PassengerIformationAdult/PassengerInformationAdultLowerTab/PassengerInformationAdultLowerTab.jsx';
 import ChildForm from '../Components/PassengerInformationChild/PassengerInformationChildLowerTab/PassengerInformationChildLowerTab.jsx';
@@ -14,18 +13,8 @@ import {Modal} from "react-bootstrap";
 import ModalPageTrip from "../Components/ModalPageTrip/ModalPageTrip.jsx"
 import { useNavigate } from 'react-router-dom';
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
-//
-// const handleSubmitBooking = async (formData) => {
-//     try {
-//         const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData);
-//         console.log(response.data); // Log the response from the backend
-//         alert(response.data);
-//         onComplete(response.data);
-//     } catch (error) {
-//         console.error('Error submitting form:', error);
-//         alert(error);
-//     }
-// };
+import {toast} from "react-toastify";
+
 
 
 const PassengerFormPage = ({ onComplete }) => {
@@ -41,10 +30,8 @@ const PassengerFormPage = ({ onComplete }) => {
     const departingFlightData = JSON.parse(localStorage.getItem("selectedDepartingFlightId"));
     const returningFlightData = JSON.parse(localStorage.getItem("selectedReturningFlightId"));
 
-// Create an array to store available flight class IDs
     const flightClassIds = [];
 
-// Check if departingFlightData is available and its classId is defined
     if (departingFlightData) {
         flightClassIds.push({ classId: departingFlightData });
     }
@@ -80,11 +67,26 @@ console.log("flightClassIds",flightClassIds)
             });
         }
     }, [formData]);
-
+    const [bearertoken, setBearerToken ] = useState("");
+    useEffect(()=> {
+        const jwtToken = localStorage?.getItem("jwtToken")
+        if (jwtToken) {
+            setBearerToken("Bearer " + jwtToken)
+            console.log(bearertoken)
+        }
+    },[]);
     const handleSubmitBooking = async (formData) => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData);
+            const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData,{
+               method: 'POST',
+                headers:{
+                    'Content-Type': 'application/json',
+                    'Authorization': bearertoken,
+                },
+                withCredentials:true,
+            });
+
             console.log(response.data);
               const parts =response.data.split(':');
               const token = parts[1].trim()
@@ -94,7 +96,13 @@ console.log("flightClassIds",flightClassIds)
             setLoading(false);
         } catch (error) {
             console.error('Error submitting form:', error);
-            alert(error);
+            setLoading(false)
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred in the process. Please try again.";
+
+            toast.error(errorMessage);
+
         }
     };
 

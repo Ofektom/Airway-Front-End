@@ -2,6 +2,7 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import {toast} from "react-toastify";
 
 const TicketConfirmation = () => {
     const [title, setTitle] = useState('');
@@ -41,6 +42,11 @@ const TicketConfirmation = () => {
             }catch (error)  {
                 console.error('Error fetching ports:', error);
                 setError('Error fetching ticket confirmation. Please try again later.');
+                const errorMessage =
+                    error.response?.data?.message ||
+                    "An error occurred in the process. Please try again.";
+                toast.error(errorMessage);
+
                 setLoading(false);
             }
 

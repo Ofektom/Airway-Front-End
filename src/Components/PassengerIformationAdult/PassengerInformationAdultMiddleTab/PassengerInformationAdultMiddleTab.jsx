@@ -67,25 +67,25 @@ const PassengersInformationAdultMiddleTab = ( {searchDetails}) => {
 
     return (
         <div>
-            <div className="middletab-adultb">
-                <div className='search-containerb'>
+            <div className="middletab-adultbb">
+                <div className='search-containerbb'>
                     <Link to="/">
-                        <button className="search-buttonb" type="submit" >
+                        <button className="search-buttonbb" type="submit" >
                             <img src={searchIcon} alt='ButtonSearchad' />
                         </button>
                     </Link>
 
                 </div>
-                <div className="flightdetails-adultb">
-                    <h3>{departingFlights[0].departurePortCity}({departingFlights[0].departurePortName}) - {departingFlights[0].arrivalPortCity}({departingFlights[0]?.arrivalPortName})</h3>
-                    <h4>{storedSearchDetails.departureDate?getFormattedDate(storedSearchDetails.departureDate):" "} {storedSearchDetails.returnDate?" - "+getFormattedDate(storedSearchDetails?.returnDate):" "}  | {storedSearchDetails?.noOfAdult} Adult, {storedSearchDetails?.noOfChildren} Child, {storedSearchDetails?.noOfInfant} Infant | {storedSearchDetails?.tripType}</h4>
+                <div className="flightdetails-adultbb">
+                    <div className="departing-flight-info-add">{departingFlights[0].departurePortCity}({departingFlights[0].departurePortName}) - {departingFlights[0].arrivalPortCity}({departingFlights[0]?.arrivalPortName})</div>
+                    <div className= "departing-flight-info-add-date">{storedSearchDetails.departureDate?getFormattedDate(storedSearchDetails.departureDate):" "} {storedSearchDetails.returnDate?" - "+getFormattedDate(storedSearchDetails?.returnDate):" "}  | {storedSearchDetails?.noOfAdult} Adult, {storedSearchDetails?.noOfChildren} Child, {storedSearchDetails?.noOfInfant} Infant | {storedSearchDetails?.tripType}</div>
 
                 </div>
 
 
-                <div className="total-price-container-adultb">
-                    <h1>Total Price</h1>
-                    <h4>NGN {totalPrice?totalPrice:0}</h4>
+                <div className="total-price-container-adultbb">
+                    <div className="total-price-text-adb">Total Price</div>
+                    <div className="total-price-text-adb-value"> {totalPrice?totalPrice:0}  NGN</div>
                 </div>
             </div>
         </div>

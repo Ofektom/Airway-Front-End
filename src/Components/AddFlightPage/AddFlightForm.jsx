@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './AddFlightForm.css';
-
+import add from "/src/assets/add.png"
+import add1 from "/src/assets/add1.svg"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AddFlightForm = () => {
     const [showForms, setShowForms] = useState(true);
     const [departureOptions, setDepartureOptions] = useState([]);
@@ -91,15 +94,21 @@ const AddFlightForm = () => {
             console.log(formData)
 
             if (!response.ok) {
-                alert('Failed to add flight')
+                // alert('Failed to add flight')
                 throw new Error('Failed to add flight');
             }
 
 
-            alert('Flight information saved successfully!');
+            toast('Flight information saved successfully!');
         } catch (error) {
             console.error('Error adding flight:', error);
-            alert('Error adding flight. Please try again.');
+
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred during the process. Please try again.";
+            toast.error(errorMessage)
+
+
         }
     };
 
@@ -159,7 +168,7 @@ const AddFlightForm = () => {
     return (
         <div className={'allpage'}>
             <div className="add-container">
-                <img src="src/assets/add.png" alt="+" className="iconS" onClick={toggleForms} />
+                <img src={add} alt="+" className="iconS" onClick={toggleForms} />
                 <h2>Add New Flights</h2>
             </div>
 
@@ -180,14 +189,13 @@ const AddFlightForm = () => {
             )}
             <div className="save-container">
                 <button type="submit" className="save-button" onClick={handleSubmit}>
-                    <img src="src/assets/add1.svg" alt="+" />
+                    <img src={add1} alt="+" />
                     <h2 className={'iconn'}>Save</h2>
                 </button>
             </div>
         </div>
     );
 };
-
 const FlightForm = ({ handleSubmit, handleChange, formData, departureOptions, arrivalOptions }) => {
     return (
         <form onSubmit={handleSubmit} className="form-container">
@@ -297,6 +305,7 @@ const FlightForm2 = ({ handleChange, formData, title,index }) => {
 
                 </div>
             </div>
+            <ToastContainer/>
         </form>
     );
 };

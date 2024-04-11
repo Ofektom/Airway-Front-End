@@ -58,7 +58,7 @@ const ResetPassword = () => {
       const errorMessage =
           error.response?.data?.message ||
           "An error occurred during password reset. Please try again.";
-
+      toast.error(errorMessage);
       setStatus(false);
       setErrorMessage("Error");
       setShowModal(true);

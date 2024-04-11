@@ -1,12 +1,14 @@
 import React from 'react';
 import './LandingPageCard.css';
-
+import searchIcon from "/src/assets/LandingSearchIcon.png"
+import landingSelectionIcon from "/src/assets/LandingSelectIcon.png"
+import landingBook from "/src/assets/LandingBook.png"
 const Card = () => (
   <div className="bodyy">
     <div className="card search">
       <div className="icon">
         <i className="fas fa-search">
-          <img className='landing-card-img' src="../src/assets/LandingSearchIcon.png" alt="Search Icon" />
+          <img className='landing-card-img' src={searchIcon} alt="Search Icon" />
         </i>
       </div>
       <div className="titlle">Search</div>
@@ -16,7 +18,7 @@ const Card = () => (
     <div className="card select">
       <div className="icon">
         <i className="fas fa-check">
-          <img src="../src/assets/LandingSelectIcon.png" alt="Select Icon" />
+          <img src={landingSelectionIcon} alt="Select Icon" />
         </i>
       </div>
       <div className="titlle">Select</div>
@@ -26,7 +28,7 @@ const Card = () => (
     <div className="card book">
       <div className="icon">
         <i className="fas fa-plane">
-          <img src="../src/assets/LandingBook.png" alt="Book Icon" />
+          <img src={landingBook} alt="Book Icon" />
         </i>
       </div>
       <div className="titlle">Book</div>

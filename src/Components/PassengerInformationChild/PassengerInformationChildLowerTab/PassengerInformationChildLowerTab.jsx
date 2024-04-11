@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import './PassengerInformationChildLowerTab.css';
+import '/src/Components/PassengerIformationAdult/PassengerInformationAdultLowerTab/PassengerInformationAdultLowerTab.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -282,42 +282,41 @@ const PassengersInformationChildLowerTab = ({passenger, onSubmit, navigateToPrev
         <form onSubmit={handleSubmit} >
 
             <div>
-                <div className='overallback-container'>
-                    <div className='overallback'>
-                    <div className= "infoLowerInfant">
+                <div className='infoLowerAdult-container'>
+                    {/*<div className='overallback'>*/}
+                    <div className= "infoLowerAdult">
                     <div className="blueTabAdult">
                         <p>Passenger Information - Passenger(Child)</p>
                     </div>
-                </div>
-                <div className="passenger-form-infant">
-                    <div className="grid-container-infant">
-                        <div className="grid-item-infant">
+
+                <div className="passenger-form-adult">
+                    <div className="grid-container-adult">
+                        <div className="grid-item-adult">
                             <label htmlFor="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" placeholder= "Enter your first name" className="input-field" defaultValue={passenger &&passenger.firstName} required= "required"/>
+                            <input type="text" id="firstName" name="firstName" placeholder= "Enter your first name" className="input-fieldA" defaultValue={passenger &&passenger.firstName} required= "required"/>
                         </div>
-                        <div className="grid-item-infant">
+                        <div className="grid-item-adult">
                             <label htmlFor="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" placeholder= "Enter your last name" className="input-field" defaultValue={passenger && passenger.lastName} required= "required"/>
+                            <input type="text" id="lastName" name="lastName" placeholder= "Enter your last name" className="input-fieldA" defaultValue={passenger && passenger.lastName} required= "required"/>
                         </div>
-                        <div className="grid-item-infant">
+                        <div className="grid-item-adult">
                             <label htmlFor="gender">Gender</label>
-                            <select id="gender" name="gender" className="input-field" defaultValue={passenger && passenger.gender} required= "required" >
-                                <option value="">Select Your Gender</option>
+                            <select id="gender" name="gender" className="input-fieldA" defaultValue={passenger && passenger.gender} required= "required" >
                                 {genders.map((gender, index) => (
                                     <option key={index} value={gender}>{gender}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className="grid-item-infant">
+                        <div className="grid-item-adult">
                             <label htmlFor="dob" className="dob-label">Date of Birth</label>
-                            <div className="input-with-icon-infant">
+                            <div className="input-fieldA">
+                                <FontAwesomeIcon icon={faCalendarAlt} className="calendar-iconA" />
                                 <DatePicker
                                     selected={dateOfBirth
                                         ? dateOfBirth:null}
                                     onChange={handleDateChange}
                                     dateFormat="dd-MM-yyyy"
-                                    placeholderText="DD-MM-YYYY"
-                                    className="input-field dob-input"
+                                    className="input-field dob-inputA"
                                     showYearDropdown
                                     scrollableYearDropdown
                                     yearDropdownItemNumber={500}
@@ -325,27 +324,28 @@ const PassengersInformationChildLowerTab = ({passenger, onSubmit, navigateToPrev
                                     required= "required"
 
                                 />
-                                <FontAwesomeIcon icon={faCalendarAlt} className="calendar-icon" />
                             </div>
                         </div>
-                        <div className="grid-item-infant">
+                        <div className="grid-item-adult">
                             <label htmlFor="nationality">Nationality</label>
-                            <select id="nationality" name="nationality" className="input-field" required= "required">
+                            <select id="nationality" name="nationality" className="input-fieldA" required= "required">
                                 <option value="">Select nationality</option>
                                 {nationalities.map((nationality, index) => (
                                     <option key={index} value={nationality}>{nationality}</option>
                                 ))}
                             </select>
                         </div>
-                    </div>
+                    {/*</div>*/}
                 </div>
 
-                <div className="progress-button-container-infant">
-                    <button className="back-button-infant" onClick={navigateToPrevious}>Back</button>
 
-                    <button type="submit" className="continue-button-infant" >Continue</button>
+            </div>
+                        <div className="progress-button-container-adult">
+                            <button className="back-button-adult" onClick={navigateToPrevious}>Back</button>
 
-                </div>
+                            <button type="submit" className="continue-button-adult" >Continue</button>
+
+                        </div>
             </div>
             </div>
             </div>

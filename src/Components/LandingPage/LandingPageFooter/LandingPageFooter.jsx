@@ -1,11 +1,19 @@
 import React from 'react';
 import './LandingPageFooter.css';
 import { Link } from 'react-router-dom';
+import landingFooterLogo from "/src/assets/LandingFooterLogo.png"
+import badgeNew from "/src/assets/badge-new.png"
+import LandingTwitter from "/src/assets/LandingTwitter.png"
+import LandingLinkln from "/src/assets/LandingLinkIn.png"
+import LandingFaceBook from "/src/assets/LandingFacebook.png"
+import LandingGitHub from "/src/assets/LandingGitHub.png"
+import LandingSocial from "/src/assets/LandingSocial.png"
+import LandingWeb from "/src/assets/LandingWeb.png"
 const Footer = () => (
     <div className='footer-main-container'>
         <div className="bodi">
             <div className="footer-content">
-                <img className='footer-logo' src="../src/assets/LandingFooterLogo.png" />
+                <img className='footer-logo' src={landingFooterLogo} />
                 <div className="tex">Design amazing digital experiences that create more happy in the world</div>
                 <div className="footer-section links-group">
                     <div className="links-column">
@@ -13,7 +21,7 @@ const Footer = () => (
                         <ul >
                             <li><Link to={"#"}>Overview</Link></li>
                             <li><Link to={"#"}>Features</Link></li>
-                            <li className='extra'><Link to={"#"}>Solutions</Link><img src="../src/assets/badge-new.png" /></li>
+                            <li className='extra'><Link to={"#"}>Solutions</Link><img src={badgeNew} /></li>
                             <li><Link to={"#"}>Tutorials</Link></li>
                             <li><Link to={"#"}>Pricing</Link></li>
                             <li><Link to={"#"}>Releases</Link></li>
@@ -75,12 +83,12 @@ const Footer = () => (
         <div className="footer-bottom">
           <div className="pp">&copy; 2023 Airway. All rights reserved.</div>
             <div className="social-icons">
-                <Link to={"#"}><img src="../src/assets/LandingTwitter.png" /></Link>
-                <Link to={"#"}><img src="../src/assets/LandingLinkIn.png" /></Link>
-                <Link to={"#"}><img src="../src/assets/LandingFacebook.png" /></Link>
-                <Link to={"#"}><img src="../src/assets/LandingGitHub.png" /></Link>
-                <Link to={"#"}><img src="../src/assets/LandingSocial.png" /></Link>
-                <Link to={"#"}><img src="../src/assets/LandingWeb.png" /></Link>
+                <Link to={"#"}><img src={LandingTwitter} /></Link>
+                <Link to={"#"}><img src={LandingLinkln} /></Link>
+                <Link to={"#"}><img src={LandingFaceBook}/></Link>
+                <Link to={"#"}><img src={LandingGitHub} /></Link>
+                <Link to={"#"}><img src={LandingSocial} /></Link>
+                <Link to={"#"}><img src={LandingWeb} /></Link>
             </div>
         </div>
     </div>

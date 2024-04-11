@@ -307,15 +307,15 @@ const PassengersInformationAdultLowerTab = ({passenger, onSubmit, navigateToPrev
                 <div className="grid-container-adult">
                     <div className="grid-item-adult">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" placeholder= "Enter your first name" className="input-field" defaultValue={passenger &&passenger.firstName}  required= "required"/>
+                        <input type="text" id="firstName" name="firstName" placeholder= "Enter your first name" className="input-fieldA" defaultValue={passenger &&passenger.firstName}  required= "required"/>
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" placeholder= "Enter your last name" className="input-field" defaultValue={passenger && passenger.lastName} required= "required"/>
+                        <input type="text" id="lastName" name="lastName" placeholder= "Enter your last name" className="input-fieldA" defaultValue={passenger && passenger.lastName} required= "required"/>
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="gender">Gender</label>
-                        <select id="gender" name="gender" className="input-field" defaultValue={passenger && passenger.gender} required= "required">
+                        <select id="gender" name="gender" className="input-fieldA" defaultValue={passenger && passenger.gender} required= "required">
                             <option disabled hidden>Select Your Gender</option>
                             {genders.map((gender, index) => (
                                 <option key={index} value={gender}>{gender}</option>
@@ -324,13 +324,13 @@ const PassengersInformationAdultLowerTab = ({passenger, onSubmit, navigateToPrev
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="dob" className="dob-label">Date of Birth</label>
-                        <div className="input-with-icon-adult">
+                        <div className="input-fieldA">
+                            <FontAwesomeIcon icon={faCalendarAlt} className="calendar-iconA" />
                             <DatePicker
                                 selected={dateOfBirth ? dateOfBirth:null}
                                 onChange={handleDateChange}
                                 dateFormat="dd-MM-yyyy"
-                                placeholderText="DD-MM-YYYY"
-                                className="input-field dob-input"
+                                className="input-field dob-inputA"
                                 showYearDropdown
                                 scrollableYearDropdown
                                 yearDropdownItemNumber={500}
@@ -338,20 +338,19 @@ const PassengersInformationAdultLowerTab = ({passenger, onSubmit, navigateToPrev
                                 required= "required"
 
                             />
-                            <FontAwesomeIcon icon={faCalendarAlt} className="calendar-icon" />
                         </div>
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="phoneNumber">Phone Number</label>
-                        <input type="text" id="phoneNumber" placeholder="Enter your phone number" name="phoneNumber" defaultValue={passenger && passenger.phoneNumber} className="input-field" required= "required"/>
+                        <input type="text" id="phoneNumber" placeholder="Enter your phone number" name="phoneNumber" defaultValue={passenger && passenger.phoneNumber} className="input-fieldA" required= "required"/>
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="passengerEmail">Email address</label>
-                        <input type="email" id="passengerEmail" placeholder="Please enter your valid email address" name="passengerEmail" className="input-field" defaultValue={passenger && passenger.passengerEmail} required= "required" />
+                        <input type="email" id="passengerEmail" placeholder="Please enter your valid email address" name="passengerEmail" className="input-fieldA" defaultValue={passenger && passenger.passengerEmail} required= "required" />
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="title">Title</label>
-                        <select id="title" name="title" className="input-field"  required= "required">
+                        <select id="title" name="title" className="input-fieldA"  required= "required">
                             <option value="">Select Your Title</option>
                             {titles.map((title, index) => (
                                 <option key={index} value={title}>{title}</option>
@@ -360,7 +359,7 @@ const PassengersInformationAdultLowerTab = ({passenger, onSubmit, navigateToPrev
                     </div>
                     <div className="grid-item-adult">
                         <label htmlFor="nationality">Nationality</label>
-                        <select id="nationality" name="nationality" className="input-field" defaultValue={passenger && passenger.nationality} required= "required">
+                        <select id="nationality" name="nationality" className="input-fieldA" defaultValue={passenger && passenger.nationality} required= "required">
                             <option value="">Select nationality</option>
                             {nationalities.map((nationality, index) => (
                                 <option key={index} value={nationality}>{nationality}</option>
@@ -370,26 +369,15 @@ const PassengersInformationAdultLowerTab = ({passenger, onSubmit, navigateToPrev
                 </div>
             </div>
             <div className="contact-info-headline-adult">
-                <h2>Contact Information</h2>
+                <span>Contact Information</span>
             </div>
-            {/*<div className="contact-info-form-adult">*/}
-            {/*    <div className="grid-container-adult">*/}
-            {/*        <div className="grid-item-adult">*/}
-            {/*            <label htmlFor="phoneNumber">Phone Number</label>*/}
-            {/*            <input type="text" id="phoneNumber" placeholder="Enter your phone number" name="phoneNumber" defaultValue={passenger && passenger.phoneNumber} className="input-field"/>*/}
-            {/*        </div>*/}
-            {/*        <div className="grid-item-adult">*/}
-            {/*            <label htmlFor="passengerEmail">Email address</label>*/}
-            {/*            <input type="text" id="passengerEmail" placeholder="Please enter your valid email address" name="passengerEmail" className="input-field" defaultValue={passenger && passenger.passengerEmail} />*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+
             <div className="primary-contact-checkbox">
                 <input type="checkbox" id="contact" name="contact"
                 checked={isChecked}
                 onChange ={handlePrimaryContact}
                 />
-                <h4 style={{ color: "#00008B" }}>Primary Contact</h4>
+                <span style={{ color: "#2D9CDB" }}>Primary Contact</span>
 
             </div>
             <div className="progress-button-container-adult">
