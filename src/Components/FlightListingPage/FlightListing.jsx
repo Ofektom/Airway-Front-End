@@ -53,6 +53,10 @@ const FlightListing = () => {
         setSelectedFlightIndex(flightIndex); // Set the selected flight index
     };
 
+
+
+
+
     useEffect(() => {
         const delayedFetchFlights = () => {
             setTimeout(fetchFlights, 2000); // Delay for 2000 milliseconds (2 seconds)

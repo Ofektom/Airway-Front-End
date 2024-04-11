@@ -16,6 +16,7 @@ import AdminDashBoardPage1 from "./Pages/AdminDashBoardPage1.jsx";
 import DeleteModalPage from "./Pages/DeleteModalPage.jsx";
 import ManageBooking from "./Pages/ManageBooking.jsx";
 import AdminUserManagementPage from "./Pages/AdminUserManagementPage.jsx";
+import EditFlightPage from "./Pages/EditFlightPage.jsx";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/deleteModal-page" element={<DeleteModalPage />} />
           <Route exact path="/flight-booking" element={<ManageBooking />} />
           <Route exact path="/passenger" element={<AdminUserManagementPage />} />
+          <Route exact path="/edit-flight/:flightId" element={<EditFlightPage/>}/>
 
         </Routes>
       </Router>
