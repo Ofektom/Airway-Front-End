@@ -65,7 +65,7 @@ function Login() {
         }, 1000);
       } else if (userRole === "PASSENGER") {
         setTimeout(() => {
-          navigate("/flight-select");
+          navigate("/");
         }, 1000);
       } else {
         navigate("/");

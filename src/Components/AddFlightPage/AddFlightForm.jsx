@@ -220,6 +220,7 @@ const FlightForm = ({ handleSubmit, handleChange, formData, departureOptions, ar
                     <div className="add-input-group">
                         <label htmlFor="departurePortName">Departure Airport</label>
                         <select id="departurePortName" name="departurePortName" value={formData.departurePortName} onChange={handleChange}>
+                            <option>Select</option>
                             {departureOptions.map((option) => (
                                 <option key={option.iataCode} value={option.iataCode}>{option.city} - {option.iataCode}</option>
                             ))}
@@ -238,6 +239,7 @@ const FlightForm = ({ handleSubmit, handleChange, formData, departureOptions, ar
                     <div className="add-input-group">
                         <label htmlFor="arrivalPortName">Arrival Airport</label>
                         <select id="arrivalPortName" name="arrivalPortName" value={formData.arrivalPortName} onChange={handleChange}>
+                            <option>Select</option>
                             {arrivalOptions.map((option) => (
                                 <option key={option.iataCode} value={option.iataCode}>{option.city} - {option.iataCode}</option>
                             ))}
