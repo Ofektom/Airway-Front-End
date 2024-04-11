@@ -4,7 +4,9 @@ import add from "/src/assets/add.png"
 import add1 from "/src/assets/add1.svg"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useNavigate} from "react-router-dom";
 const AddFlightForm = () => {
+    const navigate = useNavigate();
     const [showForms, setShowForms] = useState(true);
     const [departureOptions, setDepartureOptions] = useState([]);
     const [arrivalOptions, setArrivalOptions] = useState([]);
@@ -90,23 +92,22 @@ const AddFlightForm = () => {
                 AllowCredentials:true,
                 body: JSON.stringify(formData),
             });
-
-            console.log(formData)
+            toast('Flight information saved successfully!');
+            setTimeout(() => {
+                navigate("/flight-listing");
+            }, 3000);
 
             if (!response.ok) {
                 // alert('Failed to add flight')
                 throw new Error('Failed to add flight');
             }
-
-
-            toast('Flight information saved successfully!');
         } catch (error) {
             console.error('Error adding flight:', error);
 
             const errorMessage =
                 error.response?.data?.message ||
                 "An error occurred during the process. Please try again.";
-            toast.error(errorMessage)
+            toast.error(errorMessage);
 
 
         }
