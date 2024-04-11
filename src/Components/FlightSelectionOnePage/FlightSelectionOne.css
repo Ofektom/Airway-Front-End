@@ -182,7 +182,7 @@
 
 .depflightinfo{
     background-color: #001F3F;
-    height: 39%;
+    height: 67%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -526,6 +526,67 @@
     .firstNamePass{
         margin-left: 4rem;
     }
+
+    .returnWithFlight {
+        border: 1px solid #ccc;
+        height: 8em;
+        margin-bottom: 10px;
+        background-color: #001f3f;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+
+    .returnWithFlight .day {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .returnWithFlight .date {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+
+    .returnNoFlight {
+        border: 1px solid #ccc;
+        height: 8em;
+        margin-bottom: 10px;
+        background-color: green;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+    .returnNoFlight .day {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .returnNoFlight .date {
+        font-weight: bold;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+
+
 
 }
 /*.homeAbout{*/

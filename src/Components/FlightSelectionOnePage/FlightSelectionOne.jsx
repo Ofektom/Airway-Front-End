@@ -8,17 +8,18 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import FlightInformationPageBody from "../FlightInformationPage/FlightInformationPageBody/FlightInformationPageBody";
-import "../FlightInformationPage/FlightInformationPageBody/FlightInformationPageBody.css";
+import DepartingFlightInformationPageBody
+  from "../FlightInformationPage/DepartingFlightInformationPageBody/DepartingFlightInformationPageBody.jsx";
+import ReturningFlightInformationPageBody
+  from "../FlightInformationPage/ReturningFlightInformationPageBody/ReturningFlightInformationPageBody.jsx";
 import {Link} from "react-router-dom";
 import  PlaneImage from "../../assets/planeInMotion.svg";
 import flightImage from "../../assets/Flight-Icon.svg";
-import flightImg from "../../assets/Flight-Icon.svg";
 import smallDepart from "../../assets/smalldep.svg";
 import bigDepart from "../../assets/bigdep.svg";
 import smallReturn from "../../assets/smallreturnplan.svg";
 import returnPlane from "../../assets/returningplane.svg";
-import cancelbutton from "../../assets/modalTripClose.png"
+import cancelmodal from "../FlightInformationPage/Vector.png"
 
 const SliderWrapper = styled.div`
   margin-top: 20px;
@@ -27,6 +28,33 @@ const SliderWrapper = styled.div`
     color: black;
     background-color: white;
   }
+
+  .boxy{
+    border: 1px solid #ccc;
+    height: 8em;
+    margin-bottom: 10px;
+    background-color: #2D9CDB;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .boxy .day {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .boxy .date {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
 
   .departureslider {
     border: 1px solid #ccc;
@@ -78,6 +106,70 @@ const SliderWrapper = styled.div`
     flex-direction: row;
     justify-content: center;
   }
+
+  .returnNoFlight {
+    border: 1px solid #ccc;
+    height: 8em;
+    margin-bottom: 10px;
+    background-color: darkgray;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .noFlightText{
+    text-align: center;
+  }
+  .returnNoFlight .day {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .returnNoFlight .date {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .returnWithFlight {
+    border: 1px solid #ccc;
+    height: 8em;
+    margin-bottom: 10px;
+    background-color: #001f3f;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+
+
+  .returnWithFlight .day {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .returnWithFlight .date {
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+
+
+
 `;
 
 function FlightSelectionOne(props) {
@@ -92,6 +184,7 @@ function FlightSelectionOne(props) {
   const [allDeparture, setAllDeparture] = useState([]);
   const [allReturning, setAllReturning] = useState([]);
   const [modal, setModal] = useState(false);
+  const [returnModal, setReturnModal] = useState(false);
   const [selectedDepartingClasses, setSelectedDepartingClasses] = useState("");
   const [selectedReturningSelectedClasses, setReturningSelectedClasses] = useState("");
   const [departingFlightDate, setDepartingFlightDate] = useState("");
@@ -105,12 +198,18 @@ function FlightSelectionOne(props) {
   const [totalPrice, setTotalPrice] = useState(0);
   const [returnClickedSlider, setReturnClickedSlider] = useState(null);
   const [departClickedSlider, setDepartClickedSlider] = useState(null);
+  const [showSelectedReturningFlights, setShowSelectedReturningFlights] = useState({});
+  const [showSelectedDepartingFlights, setShowSelectedDepartingFlights] = useState({})
 
 
 
 
 
 
+
+  const handleReturnSliderClick = (index) => {
+    setReturnClickedSlider(index);
+  };
   function getAllDaysInYear(year) {
     const startDate = new Date(year, 0, 1);
     const endDate = new Date(year, 11, 31);
@@ -131,9 +230,7 @@ function FlightSelectionOne(props) {
 
 
 
-  const handleReturnSliderClick = (index) => {
-    setReturnClickedSlider(index);
-  };
+
 
   const handleDepartSliderClick = (index) => {
     setDepartClickedSlider(index);
@@ -163,8 +260,20 @@ function FlightSelectionOne(props) {
     setModal(true);
   };
 
-  const cancel =()=>{
+
+
+  const showReturnModal = () => {
+    setReturnModal(true)
+  }
+
+
+  const cancelDepart =()=>{
     setModal(false);
+  }
+
+
+  const cancelReturn =()=>{
+    setReturnModal(false);
   }
 
   const getUsernameFromLocalStorage = () => {
@@ -193,7 +302,7 @@ function FlightSelectionOne(props) {
   useEffect(() => {
     const authenticatedUsername = getUsernameFromLocalStorage();
     if (authenticatedUsername) {
-      setUsername(authenticatedUsername);
+      set(authenticatedUsername);
       setIsAuthenticated(true);
     }
   }, []);
@@ -238,7 +347,6 @@ function FlightSelectionOne(props) {
 
   const handleReturningSelectFlight = (classId) => {
     localStorage.setItem("selectedReturningFlightId", classId);
-
     setReturningSelectedClasses(classId);
     setReturningFlightPrice(returningFlightPrice);
   };
@@ -271,6 +379,7 @@ function FlightSelectionOne(props) {
           departingFlights.forEach((flight) => {
             const classes = flight?.classes;
             classes.forEach((classItem) => {
+              console.log(classItem)
             });
           });
         }
@@ -279,12 +388,10 @@ function FlightSelectionOne(props) {
           setReturningTotalFlights(
               data["Returning Flights"]?.totalFlights || 0
           );
-
           returningFlights.forEach((flight) => {
             const classes = flight.classes;
-
             classes.forEach((classItem) => {
-
+             console.log(classItem);
             });
           });
         }
@@ -320,7 +427,7 @@ function FlightSelectionOne(props) {
     const fetchReturningFlights = async () => {
       try {
         const response = await axios.get(
-            `http://localhost:8080/api/v1/flights/all-returning-flights?departurePort=${storedSearchDetails?.arrivalPort}&arrivalPort=${storedSearchDetails?.departurePort}&arrivalDate=${storedSearchDetails?.returnDate}`
+            `http://localhost:8080/api/v1/flights/all-returning-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&arrivalDate=${storedSearchDetails?.returnDate}`
         );
 
         if (response && response.status === 200) {
@@ -495,6 +602,7 @@ function FlightSelectionOne(props) {
                   <img src="src/assets/smallflight.svg" alt="Flight" />
                   <span>Departing Flights</span>
                 </div>
+
                 <SliderWrapper>
                   <Slider
                       {...settings}
@@ -510,24 +618,22 @@ function FlightSelectionOne(props) {
                           flight.classes[0]
                       ) : null;
 
-
                       return (
                           <div
                               key={index}
-                              className={index === departClickedSlider ? "boxy" : "departureslider"}
-                              onClick={(e) => {
+                              className={index === departClickedSlider ? "boxy" : (!flight ? "returnNoFlight" : "returnWithFlight")}
+                               onClick={(e) => {
                                 getDepartingFlightDate(flight?.departureDate || day.toLocaleString());
                                 handleDepartSliderClick(index);
                               }}
                           >
                             <div className="date">
-                              { day.toLocaleDateString()}
+                              {day.toLocaleDateString()}
                             </div>
                             {flight && (
                                 <>
                                   <div className="day" type="date">
                                     {getDayOfWeek(flight.departureDate)}
-
                                   </div>
                                   <div className="baseFare">
                                     {leastBaseFareClass.baseFare}
@@ -535,155 +641,21 @@ function FlightSelectionOne(props) {
                                   <div className="naira">NGN</div>
                                 </>
                             )}
+                            {!flight && (
+                                <div className="noFlightText">No flight available</div>
+                            )}
                           </div>
                       );
                     })}
                   </Slider>
                 </SliderWrapper>
 
-                {departClickedSlider === null ? (
+
                     <div className="departureflight">
                       <div className="nodepflight">
-                        {"Number of Flights: " + departingFlights.length}
+                        {"Number of Flights: " + (departClickedSlider === null ?  departingFlights.length : filteredDepartingFlights?.length)}
                       </div>
-                      {searchedDepartingFlightInfo.map((flight, index) => (
-                          <div
-                              key={index}
-                              className= "depinnerbody"
-                              onClick={() => {
-                                getDepartingFlightDate(flight?.departureDate);
-                                setDepartSlider(departClickedSlider ? "boxy" : "departureslider");
-                                handleDepartSliderClick(index);
-                                setCurrentSearchedSlide(flight.departureDate);
-                              }}
-                          >
-
-                            <div className="depflyrouteinfo">
-                              <div className="depflightinfo">Flight Information</div>
-                              <div className="depandarrivetime">
-                                <div className="deptime">
-                                  <div className="departtime">
-                                    {convertTo12HourFormat(flight?.departureTime)}
-                                  </div>
-                                  <div className="deproute">
-                                    {flight?.departurePortCity}
-                                  </div>
-                                </div>
-                                <img src= {bigDepart} />
-                                <div className="arrivaltime">
-                                  <div className="departtime">
-                                    {convertTo12HourFormat(flight?.arrivalTime)}
-                                  </div>
-                                  <div className="arriveroute">
-                                    {flight?.arrivalPortCity}
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="summary">
-                                <div className="departing">
-                                  <img src= {smallDepart} />
-                                  <div className="dep">Departure</div>
-                                </div>
-
-                                <div className="depflyinfo">
-                                  <img src= {flightImg} />
-                                  <button
-                                      onClick={showModal}
-                                      className="flyinfo"
-                                      type="button"
-                                  >
-                                    Flight Information
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flyclassesandprices">
-                              <div className="flight-classes">
-                                <div className="class">Economy</div>
-                                <div className="class">Premium</div>
-                                <div className="class">Business</div>
-                              </div>
-
-                              <div className="flightprices">
-                                <div className="economyclass">
-                                  <div className="price">
-                                    {flight?.classes[0]?.baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background: flight?.classes[0]?.id === selectedDepartingClasses ? "blue" : "transparent",
-                                        color: flight?.classes[0]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
-                                      }}
-
-                                      onClick={() => {
-                                        handleDepartingSelectFlight(flight?.classes[0]?.id);
-                                        setSelectedDepartingFlight(index + 1);
-                                        setDepartingFlightPrice(flight?.classes[0]?.baseFare);
-                                        console.log(departingFlightPrice);
-                                      }}
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                                <div className="premiumclass">
-                                  <div className="price">
-                                    {flight?.classes[1]?.baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[1]?.id === selectedDepartingClasses ? "blue" : "transparent",
-                                        color: flight?.classes[1]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleDepartingSelectFlight(flight?.classes[1]?.id);
-                                        setSelectedDepartingFlight(index+1);
-                                        setDepartingFlightPrice(flight?.classes[1]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                                <div className="businessclass">
-                                  <div className="price">
-                                    {flight?.classes[2].baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[2]?.id === selectedDepartingClasses ? "blue" : "transparent",
-                                        color: flight?.classes[2]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleDepartingSelectFlight(flight?.classes[2].id);
-                                        setSelectedDepartingFlight(index+1);
-                                        setDepartingFlightPrice(flight?.classes[2]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      ))}
-                    </div>
-                ) : (
-                    <div className="departureflight">
-                      <div className="nodepflight">
-                        {"Number of Flights: " + filteredDepartingFlights?.length}
-                      </div>
-                      {departingFlightsInfo?.map((flight, index) => (
-
+                      {(departClickedSlider === null ? searchedDepartingFlightInfo : departingFlightsInfo)?.map((flight, index) => (
                           <div className="depinnerbody" key={index}>
                             <div className="depflyrouteinfo">
                               <div className="depflightinfo">Flight Information</div>
@@ -716,12 +688,8 @@ function FlightSelectionOne(props) {
                                 </div>
 
                                 <div className="depflyinfo">
-                                  <img src= {flightImage}/>
-                                  <button
-                                      onClick={showModal}
-                                      className="flyinfo"
-                                      type="button"
-                                  >
+                                  <img src={flightImage} />
+                                  <button onClick={() => { setShowSelectedDepartingFlights(flight); showModal(); }} type="button">
                                     Flight Information
                                   </button>
                                 </div>
@@ -736,76 +704,121 @@ function FlightSelectionOne(props) {
                               </div>
 
                               <div className="flightprices">
-                                <div className="economyclass">
-                                  <div className="price">
-                                    {flight?.classes[0]?.baseFare}
+
+
+
+
+                                  <div className="economyclass">
+                                    <div className="price">
+                                      {flight.classes.find(cls => cls.className === "Economy") ? flight.classes.find(cls => cls.className === "Economy").baseFare : null}
+                                    </div>
+                                    {flight && flight.classes.find(cls => cls.className === "Economy") ? (
+                                        <div className="naira">NGN</div>
+                                    ) : null}
+                                    {flight.classes.find(cls => cls.className === "Economy") ? (
+                                        <button
+                                            style={{
+                                              background: flight?.classes.find(cls => cls.className === "Economy")?.id === selectedDepartingClasses ? "blue" : "transparent",
+                                              color: flight?.classes.find(cls => cls.className === "Economy")?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
+                                            }}
+                                            onClick={() => {
+                                              const economyClass = flight.classes.find(cls => cls.className === "Economy");
+                                              handleDepartingSelectFlight(economyClass?.id);
+                                              setSelectedDepartingFlightInfo(index + 1);
+                                              setDepartingFlightPrice(economyClass?.baseFare);
+                                              console.log(index + 1);
+                                              console.log(economyClass?.baseFare);
+                                              console.log("economy class clicked:", economyClass?.className);
+
+                                            }}
+
+                                        >
+                                          SELECT
+                                        </button>
+                                    ) : (
+                                        <div className="not-available">Not Available</div>
+                                    )}
+
                                   </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background: flight?.classes[0]?.id === selectedDepartingClasses ? "blue" : "transparent",
-                                        color: flight?.classes[0]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
-                                      }}
-                                      onClick={() => {
-                                        handleDepartingSelectFlight(flight?.classes[0]?.id);
-                                        setSelectedDepartingFlightInfo(index + 1);
-                                        setDepartingFlightPrice(flight?.classes[0]?.baseFare);
-                                        console.log(departingFlightPrice);
-                                      }}
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
+
+
                                 <div className="premiumclass">
                                   <div className="price">
-                                    {flight?.classes[1]?.baseFare}
+                                    {flight.classes.find(cls => cls.className === "Premium") ? flight.classes.find(cls => cls.className === "Premium").baseFare : null}
                                   </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[1]?.id === selectedDepartingClasses ? "blue" : "transparent",
-                                        color: flight?.classes[1]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
+                                  {flight && flight.classes.find(cls => cls.className === "Premium") ? (
+                                      <div className="naira">NGN</div>
+                                  ) : null}
+                                  {flight.classes.find(cls => cls.className === "Premium") ? (
+                                      <button
+                                          style={{
+                                            background: flight?.classes.find(cls => cls.className === "Premium")?.id === selectedDepartingClasses ? "blue" : "transparent",
+                                            color: flight?.classes.find(cls => cls.className === "Premium")?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
+                                          }}
+                                          onClick={() => {
+                                            const premiumClass = flight.classes.find(cls => cls.className === "Premium");
+                                            handleDepartingSelectFlight(premiumClass?.id);
+                                            setSelectedDepartingFlightInfo(index + 1);
+                                            setDepartingFlightPrice(premiumClass?.baseFare);
+                                            console.log(index + 1);
+                                            console.log(premiumClass?.baseFare);
+                                            console.log("premium class clicked:", premiumClass?.className);
+                                          }}
 
-                                      }}
-                                      onClick={() =>
-                                      {handleDepartingSelectFlight(flight?.classes[1]?.id);
-                                        setSelectedDepartingFlightInfo(index+1);
-                                        setDepartingFlightPrice(flight?.classes[1]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
+                                      >
+                                        SELECT
+                                      </button>
+                                  ) : (
+                                      <div className="not-available">Not Available</div>
+                                  )}
+
                                 </div>
+
+
+
                                 <div className="businessclass">
                                   <div className="price">
-                                    {flight?.classes[2].baseFare}
+                                    {flight.classes.find(cls => cls.className === "Business") ? flight.classes.find(cls => cls.className === "Business").baseFare : null}
                                   </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[2]?.id === selectedDepartingClasses ? "blue" : "transparent",
-                                        color: flight?.classes[2]?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
+                                  {flight && flight.classes.find(cls => cls.className === "Business") ? (
+                                      <div className="naira">NGN</div>
+                                  ) : null}
+                                  {flight.classes.find(cls => cls.className === "Business") ? (
+                                      <button
+                                          style={{
+                                            background: flight?.classes.find(cls => cls.className === "Business")?.id === selectedDepartingClasses ? "blue" : "transparent",
+                                            color: flight?.classes.find(cls => cls.className === "Business")?.id === selectedDepartingClasses ? "white" : "#2D9CDB",
+                                          }}
+                                          onClick={() => {
+                                            const businessClass = flight.classes.find(cls => cls.className === "Business");
+                                            handleDepartingSelectFlight(businessClass?.id);
+                                            setSelectedDepartingFlightInfo(index + 1);
+                                            setDepartingFlightPrice(businessClass?.baseFare);
+                                            console.log(index + 1);
+                                            console.log(businessClass?.baseFare);
+                                            console.log("business class clicked:", businessClass?.className);
 
-                                      }}
-                                      onClick={() =>
-                                      {handleDepartingSelectFlight(flight?.classes[2].id);
-                                        setSelectedDepartingFlightInfo(index+1);
-                                        setDepartingFlightPrice(flight?.classes[2]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
+                                          }}
+
+                                      >
+                                        SELECT
+                                      </button>
+                                  ) : (
+                                      <div className="not-available">Not Available</div>
+                                  )}
+
                                 </div>
+
+
+
+
+
                               </div>
                             </div>
                           </div>
                       ))}
                     </div>
-                )}
+
               </div>
           )}
 
@@ -813,319 +826,216 @@ function FlightSelectionOne(props) {
 
 
           {allReturning?.length > 0 && returningTotalFlights !== 0 && (
-              <div className="arrivalbody">
-                <div className="depart-div">
-                  <img src="src/assets/smallflight.svg" alt="Flight" />
-                  <span>Returning Flights</span>
+          <div className="arrivalbody">
+
+              <div className="depart-div">
+                <img src="src/assets/smallflight.svg" alt="Flight" />
+                <span>Returning Flights</span>
+              </div>
+
+
+            <SliderWrapper>
+              <Slider
+                  {...settings}
+                  className="container grid justify-between pt-[20px] slider-width"
+                  initialSlide={searchedReturningDateIndex}
+              >
+                {daysInYear.map((day, index) => {
+                  const flight = allReturning.find(flight => new Date(flight.arrivalDate).toLocaleDateString() === day.toLocaleDateString());
+                  const leastBaseFareClass = flight ? flight.classes.reduce(
+                      (minClass, currentClass) => {
+                        return currentClass.baseFare < minClass.baseFare ? currentClass : minClass;
+                      },
+                      flight.classes[0]
+                  ) : null;
+
+                  return (
+                      <div
+                          key={index}
+                          className={index === returnClickedSlider ? "boxy" : (!flight ? "returnNoFlight" : "returnWithFlight")}
+                          onClick={(e) => {
+                            getReturningFlightDate(flight?.departureDate || day.toLocaleString());
+                            handleReturnSliderClick(index);
+                          }}
+                      >
+
+
+                        <div className="date">{day.toLocaleDateString()}</div>
+
+                        {flight && (
+                            <>
+                              <div className="day" type="date">{getDayOfWeek(flight.arrivalDate)}</div>
+                              <div className="baseFare">{leastBaseFareClass.baseFare}</div>
+                              <div className="naira">NGN</div>
+                            </>
+                        )}
+                        {!flight && (
+                            <div className="noFlightText">No flight available</div>
+                        )}
+                      </div>
+                  );
+                })}
+              </Slider>
+            </SliderWrapper>
+
+
+
+
+
+              <div className="arrivalflight">
+                <div className="nodepflight">
+                  {"Number of Flights: " + (returnClickedSlider === null ? returningFlights?.length : filteredReturningFlights?.length)}
                 </div>
+                {(returnClickedSlider === null ? searchedReturningFlightInfo : returningFlightsInfo  )?.map((flight, index) => (
+                    <div className="arrivedepinnerbody" key={index}>
+                      <div className="depflyrouteinfo">
+                        <div className="depflightinfo">Flight Information</div>
 
-                <SliderWrapper>
-                  <Slider
-                      {...settings}
-                      className="container grid justify-between pt-[20px] slider-width"
-                      initialSlide={searchedReturningDateIndex}
-                  >
-                    {daysInYear.map((day, index) => {
-                      const flight = allReturning.find(flight => new Date(flight.departureDate).toLocaleDateString() === day.toLocaleDateString());
-                      const leastBaseFareClass = flight ? flight.classes.reduce(
-                          (minClass, currentClass) => {
-                            return currentClass.baseFare < minClass.baseFare ? currentClass : minClass;
-                          },
-                          flight.classes[0]
-                      ) : null;
+                        <div className="depandarrivetime">
+                          <div className="arrivaltime">
+                            <div className="arrivetime">
+                              {convertTo12HourFormat(flight?.arrivalTime)}
+                            </div>
+                            <div className="arriveroute">
+                              {flight?.arrivalPortCity}
+                            </div>
+                          </div>
+                          <img src={returnPlane} />
+                          <div className="deptime">
+                            <div className="departtime">
+                              {convertTo12HourFormat(flight?.departureTime)}
+                            </div>
+                            <div className="deproute">
+                              {flight?.departurePortCity}
+                            </div>
+                          </div>
+                        </div>
 
-                      return (
-                          <div key={index} className={index === returnClickedSlider ? "boxy" : "returnslider"}
-                               onClick={(e) => {
-                                 getReturningFlightDate(flight?.departureDate || day.toLocaleString());
-                                 handleReturnSliderClick(index);
-                               }}
-                          >
-                            <div className="date">{ day.toLocaleDateString()}</div>
+                        <div className="summary">
+                          <div className="departing">
+                            <img src={smallReturn} />
+                            <div className="dep">Arrival</div>
+                          </div>
 
-                            {flight && (
-                                <>
-                                  <div className="day" type="date">{getDayOfWeek(flight.arrivalDate)}</div>
-                                  <div className="baseFare">{leastBaseFareClass.baseFare}</div>
-                                  <div className="naira">NGN</div>
-                                </>
+                          <div className="depflyinfo">
+                            <img src={flightImage} />
+                            <button
+                                onClick={() => { setShowSelectedReturningFlights(flight); showReturnModal(); }}
+                                className="flyinfo"
+                                type="button">
+                              Flight Information
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flyclassesandprices">
+                        <div className="flight-classes">
+                          <div className="class">Economy</div>
+                          <div className="class">Premium</div>
+                          <div className="class">Business</div>
+                        </div>
+
+
+
+                        <div className="flightprices">
+                          <div className="economyclass">
+                            <div className="price">
+                              {flight.classes.find(cls => cls.className === "Economy") ? flight.classes.find(cls => cls.className === "Economy").baseFare : null}
+                            </div>
+                            {flight && flight.classes.find(cls => cls.className === "Economy") ? (
+                                <div className="naira">NGN</div>
+                            ) : null}
+                            {flight.classes.find(cls => cls.className === "Economy") ? (
+                                <button
+                                    style={{
+                                      background: flight?.classes.find(cls => cls.className === "Economy")?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
+                                      color: flight?.classes.find(cls => cls.className === "Economy")?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
+                                    }}
+                                    onClick={() => {
+                                      const economyClass = flight.classes.find(cls => cls.className === "Economy");
+                                      handleReturningSelectFlight(economyClass?.id);
+                                      setSelectedReturningFlightInfo(index + 1);
+                                      setReturningFlightPrice(economyClass?.baseFare);
+                                      console.log(index + 1);
+                                      console.log(economyClass?.baseFare);
+                                      console.log("Business class clicked:", economyClass?.className);
+
+                                    }}
+
+                              >
+                                  SELECT
+                                </button>
+                            ) : (
+                                <div className="not-available">Not Available</div>
+                            )}
+
+                          </div>
+                          <div className="premiumclass">
+                            <div className="price">
+                              {flight.classes.find(cls => cls.className === "Premium") ? flight.classes.find(cls => cls.className === "Premium").baseFare : null}
+                            </div>
+                            {flight && flight.classes.find(cls => cls.className === "Premium") ? (
+                                <div className="naira">NGN</div>
+                            ) : null}
+                            {flight.classes.find(cls => cls.className === "Premium") ? (
+                                <button
+                                    style={{
+                                      background: flight?.classes.find(cls => cls.className === "Premium")?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
+                                      color: flight?.classes.find(cls => cls.className === "Premium")?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
+                                    }}
+                                    onClick={() => {
+                                      const premiumClass = flight.classes.find(cls => cls.className === "Premium");
+                                      handleReturningSelectFlight(premiumClass?.id);
+                                      setSelectedReturningFlightInfo(index + 1);
+                                      setReturningFlightPrice(premiumClass?.baseFare);
+                                      console.log(index + 1);
+                                      console.log(premiumClass?.baseFare);
+                                      console.log("Premium class clicked:", premiumClass?.className);
+                                    }}
+                                >
+                                  SELECT
+                                </button>
+                            ) : (
+                                <div className="not-available">Not Available</div>
                             )}
                           </div>
-                      );
-                    })}
-                  </Slider>
-                </SliderWrapper>
-
-                {returnClickedSlider === null ? (
-                    <div className="arrivalflight">
-                      <div className="nodepflight">
-                        {"Number of Flights: " + returningFlights?.length}
-                      </div>
-                      {searchedReturningFlightInfo?.map((flight, index) => (
-                          <div className="arrivedepinnerbody" key={index}>
-                            <div className="depflyrouteinfo">
-                              <div className="depflightinfo">Flight Information</div>
-
-                              <div className="depandarrivetime">
-                                <div className="deptime">
-                                  <div className="departtime">
-                                    {convertTo12HourFormat(flight?.departureTime)}
-                                  </div>
-                                  <div className="deproute">
-                                    {flight?.arrivalPortCity}
-                                  </div>
-                                </div>
-
-                                <img src= {returnPlane} />
-
-                                <div className="arrivaltime">
-                                  <div className="arrivetime">
-                                    {convertTo12HourFormat(flight?.arrivalTime)}
-                                  </div>
-                                  <div className="arriveroute">
-                                    {flight?.departurePortCity}
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="summary">
-                                <div className="departing">
-                                  <img src= {smallReturn}/>
-                                  <div className="dep">Arrival</div>
-                                </div>
-
-                                <div className="depflyinfo">
-                                  <img src= {flightImage} />
-                                  <button
-                                      onClick={showModal}
-
-                                      className="flyinfo" type="button">
-
-                                    Flight Information
-                                  </button>
-                                </div>
-                              </div>
+                          <div className="businessclass">
+                            <div className="price">
+                              {flight.classes.find(cls => cls.className === "Business") ? flight.classes.find(cls => cls.className === "Business").baseFare : null}
                             </div>
-                            <div className="flyclassesandprices">
-                              <div className="flight-classes">
-                                <div className="class">Economy</div>
-                                <div className="class">Premium</div>
-                                <div className="class">Business</div>
-                              </div>
+                            {flight && flight.classes.find(cls => cls.className === "Business") ? (
+                                <div className="naira">NGN</div>
+                            ) : null}
+                            {flight.classes.find(cls => cls.className === "Business") ? (
+                                <button
+                                    style={{
+                                      background: flight?.classes.find(cls => cls.className === "Business")?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
+                                      color: flight?.classes.find(cls => cls.className === "Business")?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
+                                    }}
+                                    onClick={() => {
+                                      const businessClass = flight.classes.find(cls => cls.className === "Business");
+                                      handleReturningSelectFlight(businessClass?.id);
+                                      setSelectedReturningFlightInfo(index + 1);
+                                      setReturningFlightPrice(businessClass?.baseFare);
+                                      console.log(index + 1);
+                                      console.log(businessClass?.baseFare);
+                                      console.log("Business class clicked:", businessClass?.className);
 
-                              <div className="flightprices">
-                                <div className="economyclass">
-                                  <div className="price">
-                                    {flight?.classes[0].baseFare}
-                                  </div>
 
-                                  <div className="naira" value={flight?.classes[0].id}>NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[0]?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
-                                        color: flight?.classes[0]?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleReturningSelectFlight(flight?.classes[0].id);
-                                        setSelectedReturningFlight(index + 1);
-                                        setReturningFlightPrice(flight?.classes[0]?.baseFare);
-                                        setTotalPrice(returningFlightPrice + departingFlightPrice)
-                                        console.log(returningFlightPrice);
-                                        console.log(totalPrice);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                                <div className="premiumclass">
-                                  <div className="price">
-                                    {flight?.classes[1].baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[1]?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
-                                        color: flight?.classes[1]?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleReturningSelectFlight(flight?.classes[1].id);
-                                        setSelectedReturningFlight(index + 1);
-                                        setReturningFlightPrice(flight?.classes[1]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                                <div className="businessclass">
-                                  <div className="price">
-                                    {flight?.classes[2].baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[2]?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
-                                        color: flight?.classes[2]?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleReturningSelectFlight(flight?.classes[2].id);
-                                        setSelectedReturningFlight(index + 1);
-                                        setReturningFlightPrice(flight?.classes[2]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
+                                    }}
+                                >
+                                  SELECT
+                                </button>
+                            ) : (
+                                <div className="not-available">Not Available</div>
+                            )}
                           </div>
-                      ))}
-                    </div>
-                ) : (
-                    <div className="arrivalflight">
-                      <div className="nodepflight">
-                        {"Number of Flights: " + filteredReturningFlights?.length}
+                        </div>
                       </div>
-                      {returningFlightsInfo?.map((flight, index) => (
-                          <div className="arrivedepinnerbody" key={index}>
-                            <div className="depflyrouteinfo">
-                              <div className="depflightinfo">Flight Information</div>
-
-                              <div className="depandarrivetime">
-                                <div className="deptime">
-                                  <div className="departtime">
-                                    {convertTo12HourFormat(flight?.departureTime)}
-                                  </div>
-                                  <div className="deproute">
-                                    {flight?.arrivalPortCity}
-                                  </div>
-                                </div>
-
-                                <img src={returnPlane} />
-
-                                <div className="arrivaltime">
-                                  <div className="arrivetime">
-                                    {convertTo12HourFormat(flight?.arrivalTime)}
-                                  </div>
-                                  <div className="arriveroute">
-                                    {flight?.departurePortCity}
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="summary">
-                                <div className="departing">
-                                  <img src={smallReturn} />
-                                  <div className="dep">Arrival</div>
-                                </div>
-
-                                <div className="depflyinfo">
-                                  <img src={flightImg} />
-                                  <button
-                                      onClick={showModal}
-
-                                      className="flyinfo" type="button">
-
-                                    Flight Information
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="flyclassesandprices">
-                              <div className="flight-classes">
-                                <div className="class">Economy</div>
-                                <div className="class">Premium</div>
-                                <div className="class">Business</div>
-                              </div>
-
-                              <div className="flightprices">
-                                <div className="economyclass">
-                                  <div className="price">
-                                    {flight?.classes[0].baseFare}
-                                  </div>
-
-                                  <div className="naira" value={flight?.classes[0].id}>NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[0]?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
-                                        color: flight?.classes[0]?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleReturningSelectFlight(flight?.classes[0].id);
-                                        setSelectedReturningFlightInfo(index+1);
-                                        setReturningFlightPrice(flight?.classes[0]?.baseFare);
-                                        setTotalPrice(returningFlightPrice + departingFlightPrice)
-                                        console.log(returningFlightPrice);
-                                        console.log(totalPrice);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-
-
-                                </div>
-                                <div className="premiumclass">
-                                  <div className="price">
-                                    {flight?.classes[1].baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[1]?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
-                                        color: flight?.classes[1]?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleReturningSelectFlight(flight?.classes[1].id);
-                                        setSelectedReturningFlightInfo(index+1);
-                                        setReturningFlightPrice(flight?.classes[1]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                                <div className="businessclass">
-                                  <div className="price">
-                                    {flight?.classes[2].baseFare}
-                                  </div>
-                                  <div className="naira">NGN</div>
-                                  <button
-                                      style={{
-                                        background:
-                                            flight?.classes[2]?.id === selectedReturningSelectedClasses ? "blue" : "transparent",
-                                        color: flight?.classes[2]?.id === selectedReturningSelectedClasses ? "white" : "#2D9CDB",
-
-                                      }}
-                                      onClick={() =>
-                                      {handleReturningSelectFlight(flight?.classes[2].id);
-                                        setSelectedReturningFlightInfo(index+1);
-                                        setReturningFlightPrice(flight?.classes[2]?.baseFare);
-                                      }
-                                      }
-                                  >
-                                    SELECT
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                      ))}
                     </div>
-                )}
+                ))}
               </div>
+          </div>
           )}
 
           <div className="continue">
@@ -1142,30 +1052,53 @@ function FlightSelectionOne(props) {
 
         {modal ? (
             <>
-              <div className="bg-modal">
-                <div className="modal-content">
-                  <div className="flyheadercontainer">
+              <div className="bigmodala">
+                <div className="modal-contenta">
+                  <div className="flyheadercontainera">
                     <div className="headertext">
                       <h2>Flight Information</h2>
                     </div>
-                    <div className="cancelbutton" onClick={cancel} >
-
+                    <div className="cancelbutton" onClick={cancelDepart} >
                       <button className="cancelbutton" type="button">
-                        <img src={cancelbutton} alt="cancelIcon" />
+                        <img src={cancelmodal} alt="cancelIcon" />
                       </button>
                     </div>
                   </div>
-                  <FlightInformationPageBody  departingFlights={departingFlights} returningFlights = {returningFlights} />
-
+                  <DepartingFlightInformationPageBody showSelectedDepartingFlights = {showSelectedDepartingFlights}   />
                 </div>
               </div>
-
             </>
-
         ) : (
             <>
             </>
         )}
+
+
+        {returnModal ? (
+            <>
+              <div className="bigmodala">
+                <div className="modal-contenta">
+                  <div className="flyheadercontainera">
+                    <div className="headertexta">
+                      <h2>Flight Information</h2>
+                    </div>
+                    <div className="cancelbuttona" onClick={cancelReturn} >
+                      <button className="cancelbuttona" type="button">
+                        <img src={cancelmodal} alt="cancelIcon" />
+                      </button>
+                    </div>
+                  </div>
+                  <ReturningFlightInformationPageBody showSelectedReturningFlights = {showSelectedReturningFlights}  />
+                </div>
+              </div>
+            </>
+        ) : (
+            <>
+            </>
+        )}
+
+
+
       </div>
   );
 }
