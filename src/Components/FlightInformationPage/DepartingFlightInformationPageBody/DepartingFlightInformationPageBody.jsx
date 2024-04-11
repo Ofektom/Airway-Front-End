@@ -52,7 +52,7 @@ function DepartingFlightInformationPageBody({ showSelectedDepartingFlights }) {
 
             {showSelectedDepartingFlights && (
                 <div className="formRowa">
-                    <label htmlFor="departureDatea">departureTime</label>
+                    <label htmlFor="departureDatea">departure Time</label>
 
                     <span>{showSelectedDepartingFlights.departureTime}</span>
                 </div>

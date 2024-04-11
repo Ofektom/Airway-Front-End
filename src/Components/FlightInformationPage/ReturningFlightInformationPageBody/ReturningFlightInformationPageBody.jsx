@@ -53,7 +53,7 @@ function ReturningFlightInformationPageBody({ showSelectedReturningFlights }) {
 
             {showSelectedReturningFlights && (
                 <div className="formRow">
-                    <label htmlFor="departureDate">departureTime</label>
+                    <label htmlFor="departureDate">departure Time</label>
 
                     <span>{showSelectedReturningFlights.departureTime}</span>
                 </div>
