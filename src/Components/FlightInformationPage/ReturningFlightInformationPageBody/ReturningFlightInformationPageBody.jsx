@@ -36,7 +36,7 @@ function ReturningFlightInformationPageBody({ showSelectedReturningFlights }) {
 
             {showSelectedReturningFlights && (
                 <div className="formRow">
-                    <label htmlFor="departureDate">flightNo</label>
+                    <label htmlFor="departureDate">FlightNo</label>
 
                     <span>{showSelectedReturningFlights.flightNo}</span>
                 </div>
@@ -44,7 +44,7 @@ function ReturningFlightInformationPageBody({ showSelectedReturningFlights }) {
             <hr/>
             {showSelectedReturningFlights && (
                 <div className="formRow">
-                    <label htmlFor="departureDate">duration</label>
+                    <label htmlFor="departureDate">Duration</label>
 
                     <span>{showSelectedReturningFlights.duration}</span>
                 </div>
@@ -53,7 +53,7 @@ function ReturningFlightInformationPageBody({ showSelectedReturningFlights }) {
 
             {showSelectedReturningFlights && (
                 <div className="formRow">
-                    <label htmlFor="departureDate">departureTime</label>
+                    <label htmlFor="departureDate">Departure Time</label>
 
                     <span>{showSelectedReturningFlights.departureTime}</span>
                 </div>
