@@ -35,7 +35,7 @@ function DepartingFlightInformationPageBody({ showSelectedDepartingFlights }) {
             <hr/>
             {showSelectedDepartingFlights && (
                 <div className="formRowa">
-                    <label htmlFor="departureDatea">flightNo</label>
+                    <label htmlFor="departureDatea">FlightNo</label>
 
                     <span>{showSelectedDepartingFlights.flightNo}</span>
                 </div>
@@ -43,7 +43,7 @@ function DepartingFlightInformationPageBody({ showSelectedDepartingFlights }) {
             <hr/>
             {showSelectedDepartingFlights && (
                 <div className="formRowa">
-                    <label htmlFor="departureDatea">duration</label>
+                    <label htmlFor="departureDatea">Duration</label>
 
                     <span>{showSelectedDepartingFlights.duration}</span>
                 </div>
@@ -52,7 +52,7 @@ function DepartingFlightInformationPageBody({ showSelectedDepartingFlights }) {
 
             {showSelectedDepartingFlights && (
                 <div className="formRowa">
-                    <label htmlFor="departureDatea">departure Time</label>
+                    <label htmlFor="departureDatea">Departure Time</label>
 
                     <span>{showSelectedDepartingFlights.departureTime}</span>
                 </div>
