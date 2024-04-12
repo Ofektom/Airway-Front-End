@@ -14,14 +14,7 @@
 
 }
 
-.image-wrapper {
 
-    width: 623px;
-    height: 417px;
-    background-image: url('src/assets/LandingAction.png');
-    background-size: cover;
-    background-position: center;
-}
 
 .content-wrapper {
     position: absolute;
@@ -86,24 +79,22 @@
 
 }
 
-.btn{
+.btn1{
     width: 142px;
     height: 48px;
     padding: 8px 36px 8px 36px;
     gap: 10px;
     border-radius: 4px;  
     cursor: pointer;
-    color: #fff;
-    background: #007bff;
+    color: #ffffff;
+    background-color: #007bff;
     position: relative;
     left: 170px;
-
     font-family: Product Sans;
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
     text-align: left;
-
 }
 
 @media (max-width: 768px) {

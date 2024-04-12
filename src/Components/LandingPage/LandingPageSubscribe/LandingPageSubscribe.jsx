@@ -1,8 +1,18 @@
 import React from 'react';
 import './LandingPageSubscribe.css';
-const Subscription = () => (
+import LandingAirplane from "/src/assets/LandingAction.png";
+const Subscription = () => {
+
+    const styles = {
+    width: "623px",
+    height: "417px",
+    backgroundImage: `url(${LandingAirplane})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+}
+    return(
     <div className="containerr">
-      <div className="image-wrapper"></div>
+      <div style={styles}></div>
       <div className="content-wrapper">
         <div className="subscription-box">
           <h1>Subscribe to our Newsletter</h1>
@@ -12,9 +22,10 @@ const Subscription = () => (
         </div>
           <form className="subscription-form">
             <input className='input-field' type="email" name="email" placeholder="Email Address" />
-            <button className='btn' type="submit">Subscribe</button>
+            <button className="btn1" type="submit">Subscribe</button>
           </form>
       </div>
     </div>
   );
+}
 export default Subscription; 

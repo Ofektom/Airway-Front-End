@@ -19,7 +19,10 @@ import smallDepart from "../../assets/smalldep.svg";
 import bigDepart from "../../assets/bigdep.svg";
 import smallReturn from "../../assets/smallreturnplan.svg";
 import returnPlane from "../../assets/returningplane.svg";
-import cancelmodal from "../FlightInformationPage/Vector.png"
+import cancelmodal from "../FlightInformationPage/Vector.png";
+import Group5 from "/src/assets/Group 5.svg";
+import searchIcon from "/src/assets/searchIcon.svg";
+import smallDepartingFlight from "/src/assets/smallflight.svg";
 
 const SliderWrapper = styled.div`
   margin-top: 20px;
@@ -516,7 +519,7 @@ function FlightSelectionOne(props) {
           </div>
           <div className="infoflight">
             <div className="imgflightinfo">
-              <img src="src/assets/Group 5.svg" alt="Group" />{" "}
+              <img src={Group5} alt="Group" />{" "}
             </div>
             <div className="statusPassengerPaymentConfirmation">
               <div className="flightSel">Flight Selection</div>
@@ -553,7 +556,7 @@ function FlightSelectionOne(props) {
                   type="button"
                   onClick={routeSearch}
               >
-                <img src="src/assets/searchIcon.svg" />
+                <img src={searchIcon} />
                 <span>Search</span>
               </button>
               <div className="routeDatePassTrip">
@@ -599,7 +602,7 @@ function FlightSelectionOne(props) {
           {allDeparture?.length > 0 && departureTotalFlights !== 0 && (
               <div className="departurebody">
                 <div className="depart-div">
-                  <img src="src/assets/smallflight.svg" alt="Flight" />
+                  <img src={smallDepartingFlight} alt="Flight" />
                   <span>Departing Flights</span>
                 </div>
 
@@ -829,7 +832,7 @@ function FlightSelectionOne(props) {
           <div className="arrivalbody">
 
               <div className="depart-div">
-                <img src="src/assets/smallflight.svg" alt="Flight" />
+                <img src={smallDepartingFlight} alt="Flight" />
                 <span>Returning Flights</span>
               </div>
 
