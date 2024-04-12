@@ -10,10 +10,8 @@ const Navbar = ({ isLoggedOut }) => {
       <div className='header-main-container'>
         <div className="navbarrpage">
           <div className="logoo-container">
-            <Link to="/" className="logo-link"> {/* Wrap the logo with Link component */}
-              <img src={airwayLogo} alt="Airplane Logo" className="logoo-img" />
-              <span className="airwayy-logo">Airway</span>
-            </Link>
+            <img src={airwayLogo} alt="Airplane Logo" className="logoo-img" />
+            <span className="airwayy-logo">Airway</span>
           </div>
           <ul className="menuu">
             <li><Link to={"/"} className="menuu-item">Home</Link></li>
