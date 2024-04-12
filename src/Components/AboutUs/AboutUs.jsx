@@ -26,6 +26,7 @@ import topeoImage from '/src/assets/topeo.png';
 import oscarImage from '/src/assets/oscar.png';
 import tosinImage from '/src/assets/tosin.png';
 import lokaImage from '/src/assets/Chieloka.png';
+import mikeImage from '/src/assets/ibyle.png';
 
 const AboutUs = () => {
     const [activeTab, setActiveTab] = useState(0);
@@ -161,6 +162,10 @@ const AboutUs = () => {
             imageUrl: chimeneImage,
         },
         {
+            name: 'Micheal Sotunde',
+            stack: 'Java, React.js',
+            imageUrl: mikeImage,
+        },{
             name: 'Boluwatife Adesanya',
             stack: 'Java, React.js',
             imageUrl: boluImage,
