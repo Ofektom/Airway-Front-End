@@ -70,7 +70,7 @@ function ManageBooking({isLoggedOut}) {
   const logout = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/auth/logout');
+      const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
 
       toast(`Logout successful`)
       // setIsLoggedOut(true);

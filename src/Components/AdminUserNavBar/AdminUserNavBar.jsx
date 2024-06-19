@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalFilter from '../ModalFilter/ModalFilter';
 import filterIcon from "/src/assets/filter-icon.png"
 import bellIcon from  "/src/assets/bellNotifImg.svg"
-const AdminUserNavBar = () => {
+const AdminUserNavBar = ({ setIsLoggedOut }) => {
     const [searchText, setSearchText] = useState('');
     const [isFilterOpen, setFilterOpen] = useState(false);
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const AdminUserNavBar = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const response = await fetch('http://localhost:8080/api/v1/passenger/get-passengers');
+            const response = await fetch('http://localhost:8082/api/v1/passenger/get-passengers');
             if (!response.ok) {
                 throw new Error('Failed to fetch users');
             }
@@ -48,18 +48,43 @@ const AdminUserNavBar = () => {
         setSearchText(query);
     };
 
-    const logout = async () => {
+//     const logout = async () => {
+//         try {
+//             const response = await fetch('http://localhost:8082/api/v1/auth/logout', {
+//                 method: 'POST',
+//             });
+//             if (!response.ok) {
+//                 throw new Error('Logout request failed');
+//             }
+//             console.log('Logged out successfully');
+//             navigate('/');
+//         } catch (error) {
+//             console.error('Error during logout:', error.message);
+//         }
+//     };
+
+
+const logout = async (e) => {
+        e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/v1/auth/logout', {
-                method: 'POST',
-            });
-            if (!response.ok) {
-                throw new Error('Logout request failed');
-            }
-            console.log('Logged out successfully');
+            const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
+
+            toast(`Logout successful`)
+            setIsLoggedOut(true);
+            localStorage.removeItem("user");
+            localStorage.removeItem("userFirstName");
+            localStorage.removeItem("userRole");
+            localStorage.clear();
             navigate('/');
         } catch (error) {
             console.error('Error during logout:', error.message);
+            setLoading(false)
+            const errorMessage =
+                error.response?.data?.message ||
+                "An error occurred in the process. Please try again.";
+
+            toast.error(errorMessage);
+
         }
     };
 
@@ -90,7 +115,7 @@ const AdminUserNavBar = () => {
             <div className='admin-navbar-filter' onClick={toggleFilterModal}>
                 <img className='navbar-filter-icon' src={filterIcon} alt="filter" />
             </div>
-            <div onClick={logout} className='admin-navbar-logout'>
+            <div onClick={(e) => logout(e)} className='admin-navbar-logout'>
                 <img className='navbar-logout-icon' src={bellIcon} alt="logout" />
                 <div className='navbar-logout-text'>Log Out</div>
             </div>

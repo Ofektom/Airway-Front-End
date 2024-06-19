@@ -410,7 +410,7 @@ function FlightSelectionOne(props) {
     const fetchDepartingFlights = async () => {
       try {
         const response = await axios.get(
-            `http://localhost:8080/api/v1/flights/all-departing-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&departureDate=${storedSearchDetails?.departureDate}`
+            `http://localhost:8082/api/v1/flights/all-departing-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&departureDate=${storedSearchDetails?.departureDate}`
         );
 
         if (response && response.status === 200) setAllDeparture(response.data);
@@ -430,7 +430,7 @@ function FlightSelectionOne(props) {
     const fetchReturningFlights = async () => {
       try {
         const response = await axios.get(
-            `http://localhost:8080/api/v1/flights/all-returning-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&arrivalDate=${storedSearchDetails?.returnDate}`
+            `http://localhost:8082/api/v1/flights/all-returning-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&arrivalDate=${storedSearchDetails?.returnDate}`
         );
 
         if (response && response.status === 200) {

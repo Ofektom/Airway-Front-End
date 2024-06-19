@@ -83,7 +83,7 @@ const EditUser = ({ userId }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/v1/user/get-user/${userId}`);
+                const response = await axios.get(`http://localhost:8082/api/v1/user/get-user/${userId}`);
                 const userData = response.data; // assuming the response is in the expected format
                 setFormData(prevData => ({
                     ...prevData,
@@ -120,7 +120,7 @@ const EditUser = ({ userId }) => {
             const formattedDateOfBirth = formData.dateOfBirth ? moment(formData.dateOfBirth).format('YYYY-MM-DD') : '';
 
             const response = await axios.put(
-                `http://localhost:8080/api/v1/user/edit-user/${userId}`,
+                `http://localhost:8082/api/v1/user/edit-user/${userId}`,
                 {
                     ...formData,
                     dateOfBirth: formattedDateOfBirth

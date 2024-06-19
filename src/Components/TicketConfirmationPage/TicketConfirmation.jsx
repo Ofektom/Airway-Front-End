@@ -27,7 +27,7 @@ const TicketConfirmation = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {    const response = await axios.get(
-                `http://localhost:8080/api/v1/booking/ticket-confirmation/${token}`,
+                `http://localhost:8082/api/v1/booking/ticket-confirmation/${token}`,
                 {
                     headers: {
                         "Content-Type": "application/json",

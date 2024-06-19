@@ -33,7 +33,7 @@ const ForgotPassword = () => {
 
         try {
             await axios.post(
-                "http://localhost:8080/api/v1/auth/forgot-password",
+                "http://localhost:8082/api/v1/auth/forgot-password",
                 user,
                 {
                     headers: {

@@ -27,7 +27,7 @@ function Confirmation() {
         setLoading(true);
         try {
           const response = await axios.get(
-              `http://localhost:8080/api/v1/payment/verify-payment/${reference}`,
+              `http://localhost:8082/api/v1/payment/verify-payment/${reference}`,
               {
                 headers: {
                   'Content-Type': 'application/json',

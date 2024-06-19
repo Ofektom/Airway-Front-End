@@ -36,7 +36,7 @@ const BookingConfirmation = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/api/v1/booking/booking-confirmation/${token}`,
+                    `http://localhost:8082/api/v1/booking/booking-confirmation/${token}`,
                     {
                         headers: {
                             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ const BookingConfirmation = () => {
         try {
             console.log(bookingFlightRef)
             const response = await axios.post(
-                `http://localhost:8080/api/v1/payment/initializingpayment/${bookingFlightRef}`,
+                `http://localhost:8082/api/v1/payment/initializingpayment/${bookingFlightRef}`,
                 {
                     headers: {
                         "Content-Type": "application/json",

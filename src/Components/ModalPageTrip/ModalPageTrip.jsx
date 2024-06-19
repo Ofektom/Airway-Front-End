@@ -29,7 +29,7 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
     const fetchTripSummary = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:8080/api/v1/booking/trip-summary/${token}`);
+        const response = await axios.get(`http://localhost:8082/api/v1/booking/trip-summary/${token}`);
         setTripSummary(response.data);
         console.log(token)
         console.log(response.data)
@@ -47,7 +47,7 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
     try {
       console.log(bookingFlightRef)
       const response = await axios.post(
-          `http://localhost:8080/api/v1/payment/initializingpayment/${bookingRef}`,
+          `http://localhost:8082/api/v1/payment/initializingpayment/${bookingRef}`,
           {
             headers: {
               "Content-Type": "application/json",
