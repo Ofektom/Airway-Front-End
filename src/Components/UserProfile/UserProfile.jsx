@@ -18,7 +18,7 @@ const UserProfile = ({ userId }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/v1/user/get-user/${userId}`);
+                const response = await axios.get(`http://localhost:8082/api/v1/user/get-user/${userId}`);
                 const userDataFromApi = response.data; // Assuming the response is in the expected format
                 setUserData(userDataFromApi);
             } catch (error) {

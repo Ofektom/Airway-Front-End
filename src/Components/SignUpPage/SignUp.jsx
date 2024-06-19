@@ -49,7 +49,7 @@ const SignUp = () => {
       setLoading(true);
 
       try {
-        await axios.post("http://localhost:8080/api/v1/auth/passenger-sign-up", user, {
+        await axios.post("http://localhost:8082/api/v1/auth/passenger-sign-up", user, {
                 headers: {
                     "Content-Type": "application/json",
                 },

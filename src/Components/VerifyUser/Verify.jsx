@@ -11,7 +11,7 @@ const Verify = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
     
-        axios.get(`http://localhost:8080/api/v1/auth/verifyRegistration?token=${token}`)
+        axios.get(`http://localhost:8082/api/v1/auth/verifyRegistration?token=${token}`)
           .then(response => {
             if (response.data === 'User Verified Successfully') {
               // Handle success response
@@ -34,7 +34,7 @@ const Verify = () => {
     //     const fetchData = async () => {
     //         try {
     //             const response = await axios.get(
-    //                 `http://localhost:8080/api/v1/auth/verifyRegistration/${token}`,
+    //                 `http://localhost:8082/api/v1/auth/verifyRegistration/${token}`,
     //                 {
     //                     headers: {
     //                         "Content-Type": "application/json",

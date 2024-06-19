@@ -67,7 +67,7 @@ const EditFlight = () => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await fetch('http://localhost:8080/airports/all-airports');
+                const response = await fetch('http://localhost:8082/airports/all-airports');
                 if (!response.ok) {
                     throw new Error('Failed to fetch airports');
                 }
@@ -87,7 +87,7 @@ const EditFlight = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("jwtToken");
-            const response = await fetch(`http://localhost:8080/api/v1/flights/update-flight/${flightId}`, {
+            const response = await fetch(`http://localhost:8082/api/v1/flights/update-flight/${flightId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

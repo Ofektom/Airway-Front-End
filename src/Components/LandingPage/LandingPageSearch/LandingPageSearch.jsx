@@ -31,7 +31,7 @@ const Search = ({ setIsLoggedOut }) => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/airports/all-airports");
+                const response = await axios.get("http://localhost:8082/airports/all-airports");
                 setDepartureOptions(response.data);
                 setArrivalOptions(response.data);
                 console.log(response);
@@ -47,7 +47,7 @@ const Search = ({ setIsLoggedOut }) => {
     const logout = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/logout');
+            const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
 
             toast(`Logout successful`)
             setIsLoggedOut(true);
@@ -84,7 +84,7 @@ const Search = ({ setIsLoggedOut }) => {
         setTimeout(async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/api/v1/flights/availableFlight?flightDirection=${tripType}&departurePort=${departurePort}&arrivalPort=${arrivalPort}&departureDate=${departureDate}&returnDate=${returnDate}`
+                    `http://localhost:8082/api/v1/flights/availableFlight?flightDirection=${tripType}&departurePort=${departurePort}&arrivalPort=${arrivalPort}&departureDate=${departureDate}&returnDate=${returnDate}`
                 );
 
                 setFlights(response.data);

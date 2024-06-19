@@ -78,7 +78,7 @@ console.log("flightClassIds",flightClassIds)
     const handleSubmitBooking = async (formData) => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/booking/booking-flight', formData,{
+            const response = await axios.post('/api/v1/booking/booking-flight', formData,{
                method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',

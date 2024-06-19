@@ -8,6 +8,7 @@
     "build": "vite build",
     "lint": "eslint vite-project --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
@@ -15,6 +16,10 @@
     "@react-oauth/google": "^0.12.1",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
+    "fstream": "^1.0.12",
+    "fstream-ignore": "^1.0.5",
+    "glob": "^7.2.3",
+    "inflight": "^1.0.6",
     "jwt-decode": "^4.0.0",
     "moment": "^2.30.1",
     "react": "^18.2.0",
@@ -26,8 +31,11 @@
     "react-router-dom": "^6.22.1",
     "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
+    "rimraf": "^2.7.1",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "tar": "^2.2.2",
+    "uid-number": "^0.0.6"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",
