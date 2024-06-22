@@ -4,7 +4,7 @@ FROM node:20 AS build
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and package-lock.json (or yarn.lock) to the working directory
 COPY package*.json ./
 
 # Install dependencies
@@ -16,20 +16,20 @@ COPY . .
 # Build the React application using Vite
 RUN npm run build
 
-# Stage 2: Serve the application using a simple Node.js server
-FROM node:20-alpine
+# Stage 2: Serve the application using Nginx
+FROM nginx:stable-alpine
 
-# Install serve globally
-RUN npm install -g serve
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy the built files from the previous stage
-COPY --from=build /app/dist /app/dist
+# Copy the custom Nginx configuration file
+COPY nginx.conf /etc/nginx/conf.d
 
-# Set the working directory
-WORKDIR /app/dist
+# Copy the built files from the previous stage to the Nginx HTML directory
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Serve the application on port 3000
-EXPOSE 3000
+# Expose port 80 to the outside world
+EXPOSE 80
 
-# Use serve to serve the static files
-CMD ["serve", "-s", ".", "-l", "3000"]
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
