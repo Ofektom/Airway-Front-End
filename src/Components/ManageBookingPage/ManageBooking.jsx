@@ -14,11 +14,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import BookingCancelModal from "../BookingCancelModal/BookingCancelModal.jsx";
 
-const BASE_URL = 'http://localhost:8080/api/v1/booking';
+const BASE_URL = 'http://localhost:8082/api/v1/booking';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const getAllBookings = async (pageNo, pageSize, sortParam) => {
   try {
-    const response = await fetch(`${BASE_URL}/bookings?pageNo=${pageNo}&pageSize=${pageSize}&sort=${sortParam}`);
+    const response = await fetch(`${API_BASE_URL}/booking/bookings?pageNo=${pageNo}&pageSize=${pageSize}&sort=${sortParam}`);
     const data = await response.json();
     console.log('API Response Data:', data);
     if (!response.ok) {
@@ -70,7 +72,7 @@ function ManageBooking({isLoggedOut}) {
   const logout = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
+      const response = await axios.post(`${API_BASE_URL}/auth/logout`);
 
       toast(`Logout successful`)
       // setIsLoggedOut(true);
@@ -153,7 +155,7 @@ function ManageBooking({isLoggedOut}) {
   };
   const cancelBooking = async (id) => {
     try {
-      const response = await fetch(`${BASE_URL}/booking-cancelling/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/booking/booking-cancelling/${id}`, {
         method: 'PUT'
       });
       if (!response.ok) {

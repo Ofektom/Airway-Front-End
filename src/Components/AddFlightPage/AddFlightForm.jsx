@@ -5,6 +5,9 @@ import add1 from "/src/assets/add1.svg"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useNavigate} from "react-router-dom";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const AddFlightForm = () => {
     const navigate = useNavigate();
     const [showForms, setShowForms] = useState(true);
@@ -64,7 +67,7 @@ const AddFlightForm = () => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await fetch('http://localhost:8082/airports/all-airports');
+                const response = await fetch(`${API_BASE_URL}/airports/all-airports`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch airports');
                 }
@@ -83,7 +86,7 @@ const AddFlightForm = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("jwtToken")
-            const response = await fetch('http://localhost:8082/api/v1/flights/add-flight', {
+            const response = await fetch(`${API_BASE_URL}/flights/add-flight`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

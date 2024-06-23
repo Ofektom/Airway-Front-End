@@ -26,6 +26,7 @@ const BookingConfirmation = () => {
     const [verificationStatus, setVerificationStatus] = useState('');
     const [reference, setReference] = useState('');
 
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 
     console.log(token);
@@ -36,7 +37,7 @@ const BookingConfirmation = () => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8082/api/v1/booking/booking-confirmation/${token}`,
+                    `${API_BASE_URL}/booking/booking-confirmation/${token}`,
                     {
                         headers: {
                             "Content-Type": "application/json",
@@ -65,7 +66,7 @@ const BookingConfirmation = () => {
         try {
             console.log(bookingFlightRef)
             const response = await axios.post(
-                `http://localhost:8082/api/v1/payment/initializingpayment/${bookingFlightRef}`,
+                `${API_BASE_URL}/payment/initializingpayment/${bookingFlightRef}`,
                 {
                     headers: {
                         "Content-Type": "application/json",

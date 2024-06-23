@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const UserProfile = ({ userId }) => {
     const [userData, setUserData] = useState({
         firstName: '',
@@ -18,7 +20,7 @@ const UserProfile = ({ userId }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8082/api/v1/user/get-user/${userId}`);
+                const response = await axios.get(`${API_BASE_URL}/user/get-user/${userId}`);
                 const userDataFromApi = response.data; // Assuming the response is in the expected format
                 setUserData(userDataFromApi);
             } catch (error) {

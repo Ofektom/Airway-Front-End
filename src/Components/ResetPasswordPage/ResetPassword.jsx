@@ -10,6 +10,7 @@ import homeImg from "/src/assets/umbrella.png";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ResetPassword = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const ResetPassword = () => {
 
     try {
       await axios.post(
-          `http://localhost:8082/api/v1/auth/reset-password/${token}`,
+          `${API_BASE_URL}/auth/reset-password/${token}`,
           user,
           {
             headers: {

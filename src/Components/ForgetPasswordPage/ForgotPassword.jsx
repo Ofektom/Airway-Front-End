@@ -8,6 +8,7 @@ import successfulIcon from "/src/assets/SignupSuccessfulIcon.png"
 import airwayLogo from "/src/assets/airway_logo.svg"
 import rectangleImg from "/src/assets/Rectangle 58.svg"
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const ForgotPassword = () => {
     const [showModal, setShowModal] = useState(false);
@@ -33,7 +34,7 @@ const ForgotPassword = () => {
 
         try {
             await axios.post(
-                "http://localhost:8082/api/v1/auth/forgot-password",
+                `${API_BASE_URL}/auth/forgot-password`,
                 user,
                 {
                     headers: {

@@ -12,7 +12,7 @@ import axios from "axios";
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
 import {toast} from "react-toastify";
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -49,7 +49,7 @@ const SignUp = () => {
       setLoading(true);
 
       try {
-        await axios.post("http://localhost:8082/api/v1/auth/passenger-sign-up", user, {
+        await axios.post(`${API_BASE_URL}/auth/passenger-sign-up`, user, {
                 headers: {
                     "Content-Type": "application/json",
                 },

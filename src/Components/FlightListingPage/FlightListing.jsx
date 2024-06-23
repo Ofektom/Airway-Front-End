@@ -16,6 +16,8 @@ import BookingModalFilter from "../BookingModalFilter/BookingModalFilter.jsx";
 import FlightModalFilter from "./FlightModalFilter.jsx";
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const FlightListing = () => {
     const [searchText, setSearchText] = useState('');
     const [flightList, setFlightList] = useState([]);
@@ -64,8 +66,8 @@ const FlightListing = () => {
         };
         const fetchFlights = async () => {
             try {
-                const response = await api.get(
-                    `/api/v1/flights/fetch-all-flights?pageNo=${currentPage - 1}&pageSize=${flightsPerPage}`,
+                const response = await axios.get(
+                    `${API_BASE_URL}/flights/fetch-all-flights?pageNo=${currentPage - 1}&pageSize=${flightsPerPage}`,
                     {
                         headers: {
                             "Content-Type": "application/json",
@@ -132,8 +134,8 @@ const FlightListing = () => {
     const handleConfirm = async (selectedFlightIndex) => {
 
         try {
-            const response = await api.post(
-                `/api/v1/flights/confirm/${selectedFlightIndex}`,
+            const response = await axios.post(
+                `${API_BASE_URL}/flights/confirm/${selectedFlightIndex}`,
                 null,
                 {
                     withCredentials: true,
@@ -166,8 +168,8 @@ const FlightListing = () => {
     const handleDelete = async (selectedFlightIndex, ) => {
         console.log(selectedFlightIndex);
         try {
-            const response = await api.delete(
-                `/api/v1/flights/delete-flight/${selectedFlightIndex}`,
+            const response = await axios.delete(
+                `${API_BASE_URL}/flights/delete-flight/${selectedFlightIndex}`,
                 {
                     withCredentials: true,
                 }
@@ -190,7 +192,7 @@ const FlightListing = () => {
     const logout = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/logout');
+            const response = await axios.post(`${API_BASE_URL}/api/v1/auth/logout`);
             toast(`Logout successful`)
             localStorage.removeItem("user");
             localStorage.removeItem("userFirstName");

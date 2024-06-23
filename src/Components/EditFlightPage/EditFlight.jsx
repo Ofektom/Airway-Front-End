@@ -6,6 +6,8 @@ import addImg1 from "/src/assets/add1.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const EditFlight = () => {
     const navigate = useNavigate();
     const {flightId} = useParams()
@@ -67,7 +69,7 @@ const EditFlight = () => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await fetch('http://localhost:8082/airports/all-airports');
+                const response = await fetch(`${API_BASE_URL}/airports/all-airports`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch airports');
                 }
@@ -87,7 +89,7 @@ const EditFlight = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem("jwtToken");
-            const response = await fetch(`http://localhost:8082/api/v1/flights/update-flight/${flightId}`, {
+            const response = await fetch(`${API_BASE_URL}/flights/update-flight/${flightId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

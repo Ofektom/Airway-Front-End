@@ -8,6 +8,8 @@ import axios from "axios";
 import filterIcon from "/src/assets/filter-icon.png"
 import bellIcon from  "/src/assets/bellNotifImg.svg"
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 
 const AdminDashboardUser = () => {
@@ -82,7 +84,7 @@ const AdminDashboardUser = () => {
     const logout = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/logout');
+            const response = await axios.post(`${API_BASE_URL}/auth/logout`);
 
             toast(`Logout successful`)
             // setIsLoggedOut(true);
@@ -104,7 +106,7 @@ const AdminDashboardUser = () => {
 
             try {
 
-                const userResponse = await fetch("http://localhost:8080/api/v1/passenger/get-passengers");
+                const userResponse = await fetch(`${API_BASE_URL}/passenger/get-passengers`);
                 const userInfo = await userResponse.json();
                 setLoading(false);
                 setUserData(userInfo);

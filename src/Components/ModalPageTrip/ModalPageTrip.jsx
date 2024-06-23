@@ -8,6 +8,8 @@ import {useNavigate} from "react-router-dom"
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif"
 import {toast} from "react-toastify";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 const ModalPageTrip = ({ isOpen, onClose, token }) => {
   const [tripSummary, setTripSummary] = useState(null);
@@ -29,7 +31,7 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
     const fetchTripSummary = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:8082/api/v1/booking/trip-summary/${token}`);
+        const response = await axios.get(`${API_BASE_URL}/booking/trip-summary/${token}`);
         setTripSummary(response.data);
         console.log(token)
         console.log(response.data)
@@ -47,7 +49,7 @@ const ModalPageTrip = ({ isOpen, onClose, token }) => {
     try {
       console.log(bookingFlightRef)
       const response = await axios.post(
-          `http://localhost:8082/api/v1/payment/initializingpayment/${bookingRef}`,
+          `${API_BASE_URL}/payment/initializingpayment/${bookingRef}`,
           {
             headers: {
               "Content-Type": "application/json",

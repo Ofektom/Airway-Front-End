@@ -12,6 +12,8 @@ import { jwtDecode } from "jwt-decode";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function Login() {
   // const [token, setToken] = useState("");
@@ -39,7 +41,7 @@ function Login() {
 
 
     try {
-      const response= await api.post("/api/v1/auth/login", user, {
+      const response= await axios.post(`${API_BASE_URL}/auth/login`, user, {
         headers: {
           "Content-Type": "application/json",
         },

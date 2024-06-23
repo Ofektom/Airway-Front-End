@@ -22,12 +22,14 @@ function Confirmation() {
   const reference = urlParams.get('reference');
   const prevReference = useRef(null);
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     useEffect(() => {
       const fetchData = async () => {
         setLoading(true);
         try {
           const response = await axios.get(
-              `http://localhost:8082/api/v1/payment/verify-payment/${reference}`,
+              `${API_BASE_URL}/payment/verify-payment/${reference}`,
               {
                 headers: {
                   'Content-Type': 'application/json',

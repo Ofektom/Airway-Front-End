@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import ModalFilter from '../ModalFilter/ModalFilter';
 import filterIcon from "/src/assets/filter-icon.png"
 import bellIcon from  "/src/assets/bellNotifImg.svg"
+
+
 const AdminUserNavBar = ({ setIsLoggedOut }) => {
     const [searchText, setSearchText] = useState('');
     const [isFilterOpen, setFilterOpen] = useState(false);
     const navigate = useNavigate();
     const [allUsers, setAllUsers] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
+
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
     useEffect(() => {
 
@@ -18,7 +22,7 @@ const AdminUserNavBar = ({ setIsLoggedOut }) => {
 
     const fetchAllUsers = async () => {
         try {
-            const response = await fetch('http://localhost:8082/api/v1/passenger/get-passengers');
+            const response = await fetch(`${API_BASE_URL}/passenger/get-passengers`);
             if (!response.ok) {
                 throw new Error('Failed to fetch users');
             }
@@ -67,7 +71,7 @@ const AdminUserNavBar = ({ setIsLoggedOut }) => {
 const logout = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
+            const response = await axios.post(`${API_BASE_URL}/auth/logout`);
 
             toast(`Logout successful`)
             setIsLoggedOut(true);

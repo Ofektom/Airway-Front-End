@@ -10,6 +10,8 @@ import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Search = ({ setIsLoggedOut }) => {
     const [departurePort, setDeparturePort] = useState('');
     const [arrivalPort, setArrivalPort] = useState('');
@@ -31,7 +33,7 @@ const Search = ({ setIsLoggedOut }) => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await axios.get("http://localhost:8082/airports/all-airports");
+                const response = await axios.get(`${API_BASE_URL}/airports/all-airports`);
                 setDepartureOptions(response.data);
                 setArrivalOptions(response.data);
                 console.log(response);
@@ -47,7 +49,7 @@ const Search = ({ setIsLoggedOut }) => {
     const logout = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
+            const response = await axios.post(`${API_BASE_URL}/auth/logout`);
 
             toast(`Logout successful`)
             setIsLoggedOut(true);
@@ -84,7 +86,7 @@ const Search = ({ setIsLoggedOut }) => {
         setTimeout(async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8082/api/v1/flights/availableFlight?flightDirection=${tripType}&departurePort=${departurePort}&arrivalPort=${arrivalPort}&departureDate=${departureDate}&returnDate=${returnDate}`
+                    `${API_BASE_URL}/flights/availableFlight?flightDirection=${tripType}&departurePort=${departurePort}&arrivalPort=${arrivalPort}&departureDate=${departureDate}&returnDate=${returnDate}`
                 );
 
                 setFlights(response.data);

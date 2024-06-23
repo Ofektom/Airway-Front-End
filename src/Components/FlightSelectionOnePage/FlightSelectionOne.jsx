@@ -24,6 +24,8 @@ import Group5 from "/src/assets/Group 5.svg";
 import searchIcon from "/src/assets/searchIcon.svg";
 import smallDepartingFlight from "/src/assets/smallflight.svg";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const SliderWrapper = styled.div`
   margin-top: 20px;
 
@@ -410,7 +412,7 @@ function FlightSelectionOne(props) {
     const fetchDepartingFlights = async () => {
       try {
         const response = await axios.get(
-            `http://localhost:8082/api/v1/flights/all-departing-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&departureDate=${storedSearchDetails?.departureDate}`
+            `${API_BASE_URL}/flights/all-departing-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&departureDate=${storedSearchDetails?.departureDate}`
         );
 
         if (response && response.status === 200) setAllDeparture(response.data);
@@ -430,7 +432,7 @@ function FlightSelectionOne(props) {
     const fetchReturningFlights = async () => {
       try {
         const response = await axios.get(
-            `http://localhost:8082/api/v1/flights/all-returning-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&arrivalDate=${storedSearchDetails?.returnDate}`
+            `${API_BASE_URL}/flights/all-returning-flights?departurePort=${storedSearchDetails?.departurePort}&arrivalPort=${storedSearchDetails?.arrivalPort}&arrivalDate=${storedSearchDetails?.returnDate}`
         );
 
         if (response && response.status === 200) {

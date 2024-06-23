@@ -4,6 +4,8 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 import {toast} from "react-toastify";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const TicketConfirmation = () => {
     const [title, setTitle] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -27,7 +29,7 @@ const TicketConfirmation = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {    const response = await axios.get(
-                `http://localhost:8082/api/v1/booking/ticket-confirmation/${token}`,
+                `${API_BASE_URL}/booking/ticket-confirmation/${token}`,
                 {
                     headers: {
                         "Content-Type": "application/json",

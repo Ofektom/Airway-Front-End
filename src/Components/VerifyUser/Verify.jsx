@@ -3,6 +3,8 @@ import {Link, useParams} from "react-router-dom";
 import "./Verify.css";
 import axios from "axios";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const Verify = () => {
     const { token } = useParams();
     const [info, setInfo] = useState(null);
@@ -11,7 +13,7 @@ const Verify = () => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
     
-        axios.get(`http://localhost:8082/api/v1/auth/verifyRegistration?token=${token}`)
+        axios.get(`${API_BASE_URL}/auth/verifyRegistration?token=${token}`)
           .then(response => {
             if (response.data === 'User Verified Successfully') {
               // Handle success response

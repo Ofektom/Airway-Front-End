@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import airwayAnimationPass from "/src/assets/images/airwayanimPass.gif";
 import {toast} from "react-toastify";
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const PassengerFormPage = ({ onComplete }) => {
     const [formData, setFormData] = useState([]);
@@ -78,7 +78,7 @@ console.log("flightClassIds",flightClassIds)
     const handleSubmitBooking = async (formData) => {
         setLoading(true);
         try {
-            const response = await axios.post('/api/v1/booking/booking-flight', formData,{
+            const response = await axios.post(`${API_BASE_URL}/booking/booking-flight`, formData,{
                method: 'POST',
                 headers:{
                     'Content-Type': 'application/json',

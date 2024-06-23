@@ -17,6 +17,8 @@ const AdminDashboardNavbar = () => {
   const navigate = useNavigate();
   const [selectedFilters, setSelectedFilters] = useState([]);
 
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
   const handleCheckboxChange = (filter) => {
     if (selectedFilters.includes(filter)) {
@@ -43,7 +45,7 @@ const AdminDashboardNavbar = () => {
   const logout = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8082/api/v1/auth/logout');
+      const response = await axios.post(`${API_BASE_URL}/auth/logout`);
       toast(`Logout successful`)
       localStorage.removeItem("user");
       localStorage.removeItem("userFirstName");
